@@ -19,4 +19,9 @@ Route::get('/', function () {
 });
 
 // Route::get('/about', 'PageController@about');
-Route::get('/about', [PageController::class, 'about']);
+Route::get('/about', [PageController::class, 'about'])->middleware('abc');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
