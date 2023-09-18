@@ -16,21 +16,41 @@
                 </div><!-- .grid_6 -->
     
                 <div class="grid_6 registed_form">
-        <form class="registed">
+        <form  method="POST" action="{{ route('register') }} class="registed" >
+            @csrf
             {{-- <h2></h2> --}}
             <p>{{ __("If you have an account with us, please ")}}<a href="{{ route('login') }}">log in.</a></p>
            
             <div class="name">
-                <strong>name:</strong><sup>*</sup><br>
-                <input type="text" name="" class="" value="">
-                </div><!-- .name -->
+                <label for="name" ><strong>name:</strong><sup>*</sup><br></label>
+                <input  id="name" type="text" @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
+                @error('name')
+                <span class="invalid-feedback" role="alert">
+                    <strong>{{ $message }}</strong>
+                </span>
+            @enderror    
+            </div><!-- .name -->
             <div class="email">
-            <strong>Email Adress:</strong><sup>*</sup><br>
-            <input type="email" name="" class="" value="">
+                <label for="email">
+                    <strong>Email Adress:</strong><sup>*</sup><br>
+                </label>
+                <input id="email" type="email" @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email">
+            @error('email')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+        @enderror
             </div><!-- .email -->
             <div class="password">
-            <strong>Password:</strong><sup>*</sup><br>
+
+                <label for="password"><strong>Password:</strong><sup>*</sup><br></label>
             <input type="text" name="" class="" value="">
+            <input id="password" type="password" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+            @error('password')
+            <span class="invalid-feedback" role="alert">
+                <strong>{{ $message }}</strong>
+            </span>
+             @enderror
             </div><!-- .password -->
             <div class="password">
                 <strong>Confirm Password:</strong><sup>*</sup><br>

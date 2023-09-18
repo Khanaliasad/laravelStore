@@ -10,4 +10,10 @@ class PageController extends Controller
     {
         return view('pages.about');
     }
+    public function contact(Request $request )
+    {
+        $path = $request->path();
+        $crumb = explode("/",$path);
+        return view('pages.contact',compact('path','crumb'));
+    }
 }
