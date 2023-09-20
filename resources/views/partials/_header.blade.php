@@ -2,7 +2,7 @@
         <div class="container_12">
             <div class="grid_3">
                 <hgroup>
-                    <h1 id="site_logo"><a href="/" title=""><img src="img/logo.png" alt="Online Store Theme Logo"></a></h1>
+                    <h1 id="site_logo"><a href="/" title=""><img src="{{asset('img/logo.png')}}" alt="Online Store Theme Logo"></a></h1>
                     <h2 id="site_description">Online Store Theme</h2>
                 </hgroup>
             </div><!-- .grid_3 -->

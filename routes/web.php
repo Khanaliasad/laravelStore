@@ -19,10 +19,9 @@ Route::get('/', function () {
     return view('pages.home');
 })->name('index');
 
-Route::get('/catalog/{category}', function (string $category) {
-    return view('pages.home');
-})->whereAlpha('category');
-Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku');
+Route::get('/catalog/{category}', [App\Http\Controllers\CatagoryController::class, 'index'] )->whereAlpha('category');
+
+Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku')->name("product");
 
 // Route::get('/about', 'PageController@about');
 Route::get('/about', [PageController::class, 'about'])->middleware('abc');

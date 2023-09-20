@@ -11,11 +11,12 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
-    <!--<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>-->
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
     <script>
         window.jQuery ||
             document.write(
-                '<script src="js/jquery-1.8.3.min.js"><\/script>'
+                '<script src='
+                {{ asset('js/jquery-1.8.3.min.js') }} '><\/script>'
             );
     </script>
     <script src="{{ asset('js/html5.js') }}"></script>
@@ -33,7 +34,7 @@
 </head>
 
 <body>
-    @include('partials._top') 
+    @include('partials._top')
     @include('partials._header')
     @include('partials.breadcrumbs')
 

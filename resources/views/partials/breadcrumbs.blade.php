@@ -2,11 +2,12 @@
     <div class="breadcrumbs">
         <div class="container_12">
             <div class="grid_12">
-                <a href="{{route("index")}}">Home</a><span></span>
-                @foreach ($crumb as $key => $item)
-                    <a href="#">{{ $item }}</a>
-                    @if ($key === count($crumb))
-                        <span></span><span class="current">{{ $item }}</span>
+                <a href="{{ route('index') }}">Home</a><span></span>
+                @foreach ($crumb as $index => $item)
+                    @if ($index === count($crumb) - 1)
+                        <span class="current">{{ $item }}</span>
+                    @else
+                        <a href="#">{{ $item }}</a><span></span>
                     @endif
                 @endforeach
 

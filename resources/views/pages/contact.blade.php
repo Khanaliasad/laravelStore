@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    jkk
+    Contact Us
 @endsection
 
 @section('content')
