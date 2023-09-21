@@ -13,7 +13,13 @@ return new class extends Migration
     {
         Schema::create('coupons', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('discount_id');
+            $table->string('code')->unique();
+            $table->unsignedInteger('max_uses')->nullable();
+            $table->unsignedInteger('used')->default(0);
             $table->timestamps();
+
+            $table->foreign('discount_id')->references('id')->on('discounts');
         });
     }
 

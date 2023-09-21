@@ -11,16 +11,18 @@ return new class extends Migration {
     public function up(): void
     {
         Schema::create('orders', function (Blueprint $table) {
-            $table->id();
+            $table->id()->start_from(800);
             $table->unsignedBigInteger('user_id')->nullable();
             $table->dateTime('order_date');
             $table->string('status');
-            $table->string('customer_first_name')->nullable();
+            $table->string('customer_name')->nullable();
             $table->string('customer_last_name')->nullable();
             $table->string('customer_phone')->nullable();
             $table->string('customer_email')->nullable();
             $table->text('customer_address')->nullable();
             $table->text('order_description')->nullable();
+            $table->decimal('subtotal', 10, 2);
+            $table->decimal('discount', 10, 2);
             $table->decimal('total_amount', 10, 2);
             $table->timestamps();
 
