@@ -42,8 +42,8 @@
                                     <div class="clear"></div>
                                 </li>
                                 <li class="no_border">
-                                    <a href="/shopping_cart.html" class="view_cart">View shopping cart</a>
-                                    <a href="/checkout.html" class="checkout">Procced to Checkout</a>
+                                    <a href="{{route('cart')}}" class="view_cart">View shopping cart</a>
+                                    <a href="{{route('checkout')}}" class="checkout">Procced to Checkout</a>
                                 </li>
                             </ul>
                         </li>
@@ -55,15 +55,19 @@
                     </form><!-- .search -->
                 </div><!-- .top_header -->
             </div><!-- .grid_9 -->
-            
+
             <div class="grid_9 primary-box">
                 <nav class="primary">
                     <div class="bg-menu-select"></div>
                     <a class="menu-select" href="#">Catalog</a>
                     <ul>
                         <li class="curent"><a href="/">Home</a></li>
-                        <li><a href="/catalog_grid.html">Solids</a></li>
-                        <li><a href="/catalog_grid.html">Liquids</a></li>
+                        @foreach($categories as $category)
+                            <li><a href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a></li>
+                        @endforeach
+                        <li class="curent"><a href="{{route("contact")}}">Contact Us</a></li>
+
+{{--                        <li><a href="/catalog_grid.html">Liquids</a></li>
                         <li class="parent">
                             <a href="/catalog_grid.html">Spray</a>
                             <ul class="sub">
@@ -92,7 +96,7 @@
                                 <li><a href="/blog.html">Blog posts</a></li>
                                 <li><a href="/blog_post.html">Blog post view</a></li>
                             </ul>
-                        </li>
+                        </li>--}}
                     </ul>
                 </nav><!-- .primary -->
             </div><!-- .grid_9 -->

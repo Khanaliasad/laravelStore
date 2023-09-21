@@ -14,12 +14,9 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', function () {
-    // return view('pages.welcome');
-    return view('pages.home');
-})->name('index');
+Route::get('/', [PageController::class, 'home' ] )->name('index');
 
-Route::get('/catalog/{category}', [App\Http\Controllers\CatagoryController::class, 'index'] )->whereAlpha('category');
+Route::get('/catalog/{category}', [App\Http\Controllers\CatagoryController::class, 'index'] )->name("catalog.show");
 
 Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku')->name("product");
 
@@ -35,8 +32,8 @@ Route::get('/contact', [PageController::class, 'contact'])->name("contact");
 
 Route::get('/cart', function () {
     return view('pages.cart');
-});
+})->name("cart");
 
 Route::get('/checkout', function () {
     return view('pages.checkout');
-});
+})->name("checkout");
