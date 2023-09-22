@@ -29,6 +29,7 @@ Auth::routes();
 
 
 Route::get('/contact', [PageController::class, 'contact'])->name("contact");
+//Route::post('/contact', [PageController::class, 'postcontact'])->name("contact");
 
 Route::get('/cart', function () {
     return view('pages.cart');

@@ -26,19 +26,19 @@
 
                         <ul class="small_img clearfix" id="thumblist">
                             <li><a class="zoomThumbActive" href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: './img/content/product1.png',largeimage: './img/content/product1.png'}"><img
+                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product1.png') }}',largeimage: '{{ asset('img/content/product1.png') }}'}"><img
                                         src='{{ asset('img/content/product1.png') }}' alt=""></a></li>
                             <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: './img/content/product2.png',largeimage: './img/content/product2.png'}"><img
+                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product2.png') }}',largeimage: '{{ asset('img/content/product2.png')}}'}"><img
                                         src='{{ asset('img/content/product2.png') }}' alt=""></a></li>
                             <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: './img/content/product3.png',largeimage: './img/content/product3.png'}"><img
+                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product3.png')}}',largeimage: '{{ asset('img/content/product3.png')}}'}"><img
                                         src='{{ asset('img/content/product3.png') }}' alt=""></a></li>
                             <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: './img/content/product4.png',largeimage: './img/content/product4.png'}"><img
+                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product4.png')}}',largeimage: '{{ asset('img/content/product4.png')}}'}"><img
                                         src='{{ asset('img/content/product4.png') }}' alt=""></a></li>
                             <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: './img/content/product5.png',largeimage: './img/content/product5.png'}"><img
+                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product5.png')}}',largeimage: '{{ asset('img/content/product5.png')}}'}"><img
                                         src='{{ asset('img/content/product5.png') }}' alt=""></a></li>
                         </ul><!-- .small_img -->
 
