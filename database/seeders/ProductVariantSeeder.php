@@ -4,7 +4,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
-use App\Models\ProductVariants;
+use App\Models\ProductVariant;
 
 class ProductVariantSeeder extends Seeder
 {
@@ -17,6 +17,6 @@ class ProductVariantSeeder extends Seeder
         $productVariantsCount = 50;
 
         // Seed product variants
-        ProductVariants::factory($productVariantsCount)->create();
+        ProductVariant::factory($productVariantsCount)->create();
     }
 }

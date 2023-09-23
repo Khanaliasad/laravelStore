@@ -2,7 +2,7 @@
 
 namespace Database\Factories;
 
-use App\Models\ProductVariants;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +18,7 @@ class ProductImageFactory extends Factory
     public function definition(): array
     {
         return [
-            'product_variant_id' => ProductVariants::factory(),
+            'product_variant_id' => ProductVariant::factory(),
             'image_path' => '/img/content/product' . $this->faker->unique(true)->numberBetween(1, 12) . '.png',
         ];
     }

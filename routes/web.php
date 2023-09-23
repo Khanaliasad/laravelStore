@@ -16,9 +16,9 @@ use App\Http\Controllers\PageController;
 
 Route::get('/', [PageController::class, 'home' ] )->name('index');
 
-Route::get('/catalog/{category}', [App\Http\Controllers\CatagoryController::class, 'index'] )->name("catalog.show");
+Route::get('/catalog/{category}', [\App\Http\Controllers\CatagoryController::class, 'index'] )->name("catalog.show");
 
-Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku')->name("product");
+Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku')->name("product.page");
 
 // Route::get('/about', 'PageController@about');
 Route::get('/about', [PageController::class, 'about'])->middleware('abc');

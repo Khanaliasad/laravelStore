@@ -23,7 +23,7 @@
                             <ul class="cart_cont">
                                 <li class="no_border recently">Recently added item(s)</li>
                                 <li>
-                                    <a href="/product_page.html" class="prev_cart"><div class="cart_vert"><img src="img/content/cart_img.png" alt="Product 1" title=""></div></a>
+                                    <a href="/product_page.html" class="prev_cart"><div class="cart_vert"><img src="{{asset("img/content/cart_img.png")}}" alt="Product 1" title=""></div></a>
                                     <div class="cont_cart">
                                         <h4>Faddywax Fragrance Diffuser Set <br>Gardenia</h4>
                                         <div class="price">1 x <span>$399.00</span></div>
@@ -33,7 +33,7 @@
                                 </li>
 
                                 <li>
-                                    <a href="/product_page.html" class="prev_cart"><div class="cart_vert"><img src="img/content/cart_img2.png" alt="Product 2" title=""></div></a>
+                                    <a href="/product_page.html" class="prev_cart"><div class="cart_vert"><img src="{{asset("img/content/cart_img2.png")}}" alt="Product 2" title=""></div></a>
                                     <div class="cont_cart">
                                         <h4>Caldrea Linen and Room Spray</h4>
                                         <div class="price">1 x <span>$123.00</span></div>

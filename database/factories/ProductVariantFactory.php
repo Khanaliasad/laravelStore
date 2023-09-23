@@ -3,21 +3,21 @@
 namespace Database\Factories;
 
 use App\Models\Product;
-use App\Models\ProductVariants;
+use App\Models\ProductVariant;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
  * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Model>
  */
-class ProductVariantsFactory extends Factory
+class ProductVariantFactory extends Factory
 {
     /**
      * Define the model's default state.
      *
      * @return array<string, mixed>
      */
-    protected $model = ProductVariants::class;
+    protected $model = ProductVariant::class;
     public function definition(): array
     {
         return [

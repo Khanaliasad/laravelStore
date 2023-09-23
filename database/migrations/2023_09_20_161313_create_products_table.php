@@ -23,6 +23,7 @@ return new class extends Migration {
 
             $table->foreign('category_id')->references('id')->on('categories');
         });
+        DB::statement('ALTER TABLE products AUTO_INCREMENT = 2000');
     }
 
     /**
