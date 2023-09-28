@@ -56,7 +56,7 @@
 
                 </div><!-- .pagination -->
                 <p class="pagination_info">Displaying <span class="productsFrom"></span> to <span
-                            class="productsFrom"></span> (of <span class="totalProducts"></span> products)</p>
+                            class="productsTo"></span> (of <span class="totalProducts"></span> products)</p>
 
                 <div class="clear"></div>
             </div><!-- #content -->
@@ -226,6 +226,8 @@
                     $("SELECT").selectBox().load(productsShow(response[0].show));
                     setPagination(response[0].totalPages)
                     changeCurrentPage(response[0].page);
+                    setPaginationDetails(response[0].show,response[0].page,response[0].totalProducts)
+
                     // Append data to the recipe list
                     response.products.forEach(function (product) {
 
@@ -369,5 +371,14 @@
             }
             return $("div .sort .selectBox-label").text();
         }
+        function setPaginationDetails(show,page,totalProducts) {
+            let from = show*page-show+1;
+            let to = show*page<totalProducts?show*page:totalProducts;
+
+            $(".totalProducts").text(totalProducts);
+            $(".productsFrom").text(from);
+            $(".productsTo").text(to);
+        }
+        // setPaginationDetails(3,1,10);
     </script>
 @endsection
