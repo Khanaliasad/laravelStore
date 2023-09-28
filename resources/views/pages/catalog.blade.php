@@ -15,7 +15,7 @@
                         <select id="showProductQty">
                             @for($i = 1; $i <= 10; $i++)
                                 <option
-                                    value="show={{$i}}">
+                                        value="{{$i}}">
                                     {{$i}}
                                 </option>
                             @endfor
@@ -27,9 +27,8 @@
                     <div class="sort">
                         <span>Sort By</span>
                         <select>
-                            <option>Price</option>
-                            <option>Rating</option>
-                            <option>Name</option>
+                            <option value="price">Price</option>
+                            <option value="name">Name</option>
                         </select>
 
                         <a class="sort_up" href="#">&#8593;</a>
@@ -51,16 +50,13 @@
                 <div class="clear"></div>
 
                 <div class="pagination">
-                    <ul>
-                        <li class="prev"><a>&#8592;</a></li>
-                        @for($i = 1; $i <= $totalPages; $i++)
-                            <li id="page{{$i}}"><a>{{$i}}</a></li>
-                        @endfor
+                    <ul class="paginationUL">
 
-                        <li class="next"><a>&#8594;</a></li>
                     </ul>
+
                 </div><!-- .pagination -->
-                <p class="pagination_info">Displaying 1 to 12 (of {{$totalProducts}} products)</p>
+                <p class="pagination_info">Displaying <span class="productsFrom"></span> to <span
+                            class="productsFrom"></span> (of <span class="totalProducts"></span> products)</p>
 
                 <div class="clear"></div>
             </div><!-- #content -->
@@ -77,11 +73,11 @@
                             @foreach($categories as $category)
                                 @if($requestedCategory == $category )
                                     <li class="current"><a
-                                            href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
+                                                href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
                                     </li>
                                 @else
                                     <li class=""><a
-                                            href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
+                                                href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
                                     </li>
                                 @endif
 
@@ -211,22 +207,27 @@
 
         // Loading Recipe Data
 
-        function loadData(page, show = "show=3") {
+        function loadData() {
+            let page = getCurrentPage();
+            let show = getCurrentShow();
+            let sort = getCurrentSortBy();
             let url = "{{ route('catalog.show',$crumb[count($crumb)-1]) }}";
             let cart = "{{ asset('img/bg_cart.png')}}";
             let sale = "{{ asset('img/sale.png')}}";
-            console.log(cart);
+
             $.ajax({
-                url: url + '?page=' + page +"&"+ show,
+                url: url + '?page=' + page + "&show=" + show + "&sort=" + sort,
                 method: "GET",
                 dataType: 'JSON',
                 success: function (response) {
+                    console.log("response", response)
                     // removing existing data
                     removeProducts();
-                    changeCurrentPage(page);
-
+                    $("SELECT").selectBox().load(productsShow(response[0].show));
+                    setPagination(response[0].totalPages)
+                    changeCurrentPage(response[0].page);
                     // Append data to the recipe list
-                    response.forEach(function (product) {
+                    response.products.forEach(function (product) {
 
                         let productRoute = `/product/${product.id}`;
 
@@ -258,83 +259,115 @@
                             <!-- .cart -->
                             </article>
 `);
-                        $(".article").hover(
-                            function () {
-                                var self = this;
-                                this.hoverAnimationTimeout = setTimeout(function () {
-                                    $(self).find(".price").transition({left: 0, textAlign: 'left'});
-                                    $(self).find(".bay").transition({rotate: 360, opacity: 1, delay: 200});
-                                    $(self).find(".compare").transition({left: '110px', delay: 400});
-                                    $(self).find(".wishlist").transition({left: '144px', delay: 500});
-                                }, 280);
-                            }, function () {
-                                clearTimeout(this.hoverAnimationTimeout);
-                                $(this).find(".wishlist").transition({left: '244px'});
-                                $(this).find(".compare").transition({left: '220px'});
-                                $(this).find(".bay").transition({rotate: 0, opacity: 0});
-                                $(this).find(".price").transition({left: '60px', textAlign: 'center'});
-                            });
 
 
                     });
-
+                    $(".article").hover(
+                        function () {
+                            var self = this;
+                            this.hoverAnimationTimeout = setTimeout(function () {
+                                $(self).find(".price").transition({left: 0, textAlign: 'left'});
+                                $(self).find(".bay").transition({rotate: 360, opacity: 1, delay: 200});
+                                $(self).find(".compare").transition({left: '110px', delay: 400});
+                                $(self).find(".wishlist").transition({left: '144px', delay: 500});
+                            }, 280);
+                        }, function () {
+                            clearTimeout(this.hoverAnimationTimeout);
+                            $(this).find(".wishlist").transition({left: '244px'});
+                            $(this).find(".compare").transition({left: '220px'});
+                            $(this).find(".bay").transition({rotate: 0, opacity: 0});
+                            $(this).find(".price").transition({left: '60px', textAlign: 'center'});
+                        });
                 }
             });
         }
 
-        @for($i = 1; $i <= $totalPages; $i++)
-        $("#page{{$i}}").click(function (event) {
-            // changeCurrentPage(event.target.firstChild.data);
-            loadData(event.target.firstChild.data);
-        });
-        @endfor
-
         // initial page load ajax call
-        $(".page_title").load(loadData(1));
-        $("SELECT").selectBox().load(productsShow());
+        $(".page_title").load(loadData());
 
-
-        $('.prev').click(function (event) {
-            var currentPage = $('.curent')[0].children[0].text
-            if (currentPage > 1 && currentPage <= {{$totalPages}}) {
-                $(".prev").attr("disabled", false);
-                loadData(currentPage - 1);
-            } else {
-                $(".prev").attr("disabled", true);
-            }
+        // selectbox change handeler for (show and sortby)
+        $("SELECT").selectBox().change(function (event) {
+            changeCurrentPage(1);
+            loadData();
         });
 
-        $('.next').click(function (event) {
-            var currentPage = parseInt($('.curent')[0].children[0].text);
-            if (currentPage >= 1 && currentPage < {{$totalPages}}) {
-                $(".next").attr("disabled", false);
-                loadData(currentPage + 1);
+        // default script to handle pagination
+        $(document).on("click", ".pages", function (event) {
+            var currentPage = parseInt(getCurrentPage())
+
+            if ($(this).attr('id') == "prev") {
+                if (currentPage > 1 && currentPage <= {{$totalPages}}) {
+                    $(".paginationUL .prev").attr("disabled", false);
+                    changeCurrentPage(currentPage - 1)
+                } else {
+                    $(".prev").attr("disabled", true);
+                    return;
+                }
+            } else if ($(this).attr('id') == "next") {
+                if (currentPage >= 1 && currentPage < {{$totalPages}}) {
+                    $(".next").attr("disabled", false);
+                    changeCurrentPage(currentPage + 1)
+
+                } else {
+                    $(".next").attr("disabled", true);
+                    return;
+                }
+
             } else {
-                $(".next").attr("disabled", true);
+                changeCurrentPage($(this).attr('id'))
             }
+
+            loadData();
         });
+
+        // adding pagination wrt total products
+        function setPagination(totalPages) {
+            // removing previous pagination
+            $('.paginationUL li').remove();
+
+            // adding pagination
+            $('.paginationUL').append(`<li id="prev" class="pages"><a>&#8592;</a></li>`);
+            for (let i = 1; i <= totalPages; i++) {
+                $('.paginationUL').append(`<li id=${i} class="pages"><a>${i}</a></li>`);
+            }
+            $('.paginationUL').append(`<li id="next" class="pages"><a>&#8594;</a></li>`);
+        }
 
         function removeProducts() {
             $(".products.catalog.negative-grid").empty();
         }
 
         function changeCurrentPage(page) {
-            $(".curent").removeClass("curent");
-            $(`#page${page}`).addClass("curent")
+            $(".paginationUL .curent").removeClass("curent");
+            $(`#${page}`).addClass("curent")
         }
 
-        function productsShow() {
-                let show = {{$show}};
-                console.log($("div .show .selectBox-label").text(show),)
-
+        // update currently showing number of product
+        function productsShow(show) {
+            $("div .show .selectBox-label").text(show);
         }
 
-        $("SELECT").selectBox().change(function (event) {
-            // alert("bharwa")
-            loadData(1, $(this).val());
-            // window.location.href = $(this).val();
+        function getCurrentShow() {
+            if ($("div .show .selectBox-label").text() == "") {
+                return 3
+            }
+            return $("div .show .selectBox-label").text();
+        }
 
-        });
+        function getCurrentPage() {
+            // console.log("getCurrentPage", $(".pagination ul li.curent").text())
+            if ($(".pagination ul li.curent").text()) {
+                return $(".pagination ul li.curent").text();
+            }
+            return 1;
+        }
 
+        function getCurrentSortBy() {
+            // console.log($("div .sort .selectBox-label").text());
+            if ($("div .sort .selectBox-label").text() == "") {
+                return 'price'
+            }
+            return $("div .sort .selectBox-label").text();
+        }
     </script>
 @endsection
