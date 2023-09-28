@@ -594,7 +594,7 @@ select,
 }
 .selectBox-dropdown-menu li {
     display: block;
-    
+
 }
 .selectBox-dropdown-menu li a {
     color: #777;
@@ -1386,7 +1386,7 @@ form.search:hover .search_button {
     background: url(../img/slider_nav.png) no-repeat 0 -213px;
 }
 #slider_body .anythingControls {
-    margin: 15px auto 0 auto;          
+    margin: 15px auto 0 auto;
     position: relative;
     text-align: center;
 }
@@ -1830,7 +1830,7 @@ input.vote {
     text-transform: uppercase;
 }
 #ban_pagination {
-    margin: 15px auto 0 auto;          
+    margin: 15px auto 0 auto;
     position: relative;
     text-align: center;
 }
@@ -2107,6 +2107,7 @@ h1.page_title {
     border: 0 none;
     color: #444;
     font: bold 18px/39px 'PT Sans', Arial, Verdana, sans-serif;
+    cursor: pointer;
 }
 .pagination li.prev a:hover,
 .pagination li.next a:hover {
@@ -2569,7 +2570,7 @@ article.product_page .cart .wishlist:hover span {
     filter: alpha(opacity = 60);
     overflow: hidden;
     position: absolute;
-    
+
 }
 .product_page .img_slid .caroufredsel_wrapper {
     height: 80px!important;
@@ -2636,7 +2637,7 @@ article.product_page .cart .wishlist:hover span {
     background: url(../img/bg_arows.png) no-repeat -7px 0;
 }
 #pagination {
-    margin: 20px auto 0 auto;          
+    margin: 20px auto 0 auto;
     position: relative;
     text-align: center;
 }
@@ -3389,7 +3390,7 @@ form.contact .field {
 }
 .compare td:nth-child(even),
 .compare th:nth-child(even) {
-    background-color:#fbfbfb;  
+    background-color:#fbfbfb;
 }
 .compare .bg th:nth-child(even) {
     background-color:#fbfbfb;
@@ -3692,7 +3693,7 @@ article.post {
     padding: 20px;
 }
 article.post h2 {
-    margin-bottom: 23px; 
+    margin-bottom: 23px;
 }
 article.post h2 a {
     color: #555;
@@ -4011,7 +4012,7 @@ ul.f_contact li {
     list-style: none;
     margin: 0 0 5px 0;
     padding: 0 0 0 25px;
-    
+
 }
 ul.f_contact li+li {
     background: url(../img/li_phone.png) no-repeat 0px 5px;
@@ -4219,7 +4220,7 @@ ul.f_contact li+li+li {
         float: none;
         text-align: right;
     }
-    
+
     /* Nav primary */
     .primary-box {
         padding: 25px 0 24px 0;
@@ -4270,7 +4271,7 @@ ul.f_contact li+li+li {
     .primary ul li {
         float: none;
     }
-    .primary ul li a, 
+    .primary ul li a,
     .primary ul li.curent a {
         background-color: #fff;
         border: 0 none;
@@ -4319,7 +4320,7 @@ ul.f_contact li+li+li {
         position: relative;
         top: 0;
     }
-    .primary ul ul.sub li a, 
+    .primary ul ul.sub li a,
     .primary ul ul.sub li a:hover {
         background: none;
         border-top: 1px solid #ededed;
@@ -4333,12 +4334,12 @@ ul.f_contact li+li+li {
     .primary ul ul.sub li a:hover {
         background: #f5f5f5;
     }
-    
+
     #slider_body .anythingSlider {
         margin-left: 1.3%;
         margin-right: 1.3%;
     }
-    
+
     #banners .banner {
         height: 160px;
     }
@@ -4347,7 +4348,7 @@ ul.f_contact li+li+li {
         width: 160px;
         //margin-top: expression((40-parseInt(offsetHeight)/2)  <0 ? "0" : 40-(parseInt(offsetHeight)/2) +'px') ;
     }
-    
+
     /******************************************************************************
       Content (max-width: 1007px)
     *******************************************************************************/
@@ -4396,7 +4397,7 @@ ul.f_contact li+li+li {
         margin: 0 20px 0 0;
         width: 120px;
     }
-    
+
     /******************************************************************************
       Footer (max-width: 1007px)
     *******************************************************************************/
@@ -4415,7 +4416,7 @@ ul.f_contact li+li+li {
         -webkit-box-sizing: border-box;
         width: 100%;
     }
-    
+
     /******************************************************************************
       Form style
     *******************************************************************************/
@@ -4435,7 +4436,7 @@ ul.f_contact li+li+li {
         max-width: 747px;
         min-width: auto;
     }
-    
+
     #home_banners .banner {
         background-size: 42px 42px;
         font-size: 14px;
@@ -4448,7 +4449,7 @@ ul.f_contact li+li+li {
     #slider_body .slid_content p {
         font-size: 11px;
     }
-    
+
     /******************************************************************************
       Content (max-width: 747px)
     *******************************************************************************/
@@ -4460,7 +4461,7 @@ ul.f_contact li+li+li {
     .show .selectBox + span {
         display: none;
     }
-    
+
     .product_page .grid_7 {
         display: block;
         width: 97.4%;
@@ -4477,7 +4478,7 @@ ul.f_contact li+li+li {
     .products_list article .price {
         margin-right: 10px;
     }
-    
+
     #banners .banner {
         height: 148px;
     }
@@ -4485,7 +4486,7 @@ ul.f_contact li+li+li {
         height: 73px;
         width: 148px;
     }
-    
+
     /******************************************************************************
       Footer (max-width: 747px)
     *******************************************************************************/
@@ -4495,15 +4496,15 @@ ul.f_contact li+li+li {
 }
 
 @media only all and (max-width: 690px) {
-    #slider_body .slid_content p, 
+    #slider_body .slid_content p,
     #slider_body .slid_content .buy_now {
         display: none;
     }
     #slider_body .slid_content {
         top: 40%;
     }
-    
-    #content.grid_9, 
+
+    #content.grid_9,
     #checkout_info.grid_9 {
         display: block;
         float: none;
@@ -4513,7 +4514,7 @@ ul.f_contact li+li+li {
         margin: 0;
         width: 100%;
     }
-    #sidebar.grid_3, 
+    #sidebar.grid_3,
     #sidebar_right.grid_3 {
         display: block;
         float: none;
@@ -4530,7 +4531,7 @@ ul.f_contact li+li+li {
         float: none;
         margin-top: 30px;
     }
-    
+
     #banners .banner {
         height: 226px;
     }
@@ -4538,12 +4539,12 @@ ul.f_contact li+li+li {
         height: 134px;
         width: 226px;
     }
-    
+
     .footer_navigation .newsletter .icon-mail {
         float: none;
     }
     .form_style .grid_2,
-    .form_style .grid_3, 
+    .form_style .grid_3,
     .form_style .grid_9 {
         float: none;
         display: block;
@@ -4583,7 +4584,7 @@ ul.f_contact li+li+li {
     #top nav ul li a {
         padding: 0 7px;
     }
-    header .container_12 .grid_3, 
+    header .container_12 .grid_3,
     header .container_12 .grid_9 {
         width: 97.4%;
     }
@@ -4610,14 +4611,14 @@ ul.f_contact li+li+li {
         float: right;
         width: 134px;
     }
-    
+
     #home_banners .grid_6 + .grid_6 {
         margin-top: 24px;
     }
     #slider_body .slid_content h2 {
         font-size: 13px;
     }
-    
+
     #content_bottom .grid_6 {
         display: block;
         float: none;
@@ -4626,14 +4627,14 @@ ul.f_contact li+li+li {
     #content_bottom .grid_6 + .grid_6 {
         margin-top: 45px;
     }
-    
+
     .sort {
         padding: 0 0 0 10px;
     }
     .show {
         padding: 0 10px 0 0;
     }
-    .sort > span, 
+    .sort > span,
     .show > span {
         display: none;
     }
@@ -4651,7 +4652,7 @@ ul.f_contact li+li+li {
         display: inline;
         width: 14.06%;
     }
-    
+
     .left_404 {
         margin-bottom: 30px;
     }
@@ -4663,11 +4664,11 @@ ul.f_contact li+li+li {
         width: 100%;
     }
     .form.grid_6,
-    .registed_form, 
+    .registed_form,
     #cart_forms .grid_4 + .grid_4 {
         margin-top: 30px;
     }
-    .footer_navigation .newsletter, 
+    .footer_navigation .newsletter,
     .footer_navigation .payments {
         border: 0 none;
         float: none;
@@ -4706,7 +4707,7 @@ ul.f_contact li+li+li {
 }
 
 @media only all and (max-width: 512px) {
-    .products.catalog, 
+    .products.catalog,
     .products {
         width: 250px;
     }
@@ -4716,7 +4717,7 @@ ul.f_contact li+li+li {
     body {
         min-width: 312px;
     }
-    
+
     .alignleft,
     .alignright {
         float: none;
@@ -4726,7 +4727,7 @@ ul.f_contact li+li+li {
     .img_description {
         display: inline-block;
     }
-    
+
     .options {
         padding-left: 2px;
         padding-right: 2px;
@@ -4745,7 +4746,7 @@ ul.f_contact li+li+li {
     .pagination li span {
         padding: 0 10px;
     }
-    
+
     .product_page .img_slid {
         margin-left: 1.3%;
         margin-right: 1.3%;
@@ -4788,7 +4789,7 @@ ul.f_contact li+li+li {
         border: 0 none;
         float: none;
     }
-    
+
     .form_style input[type="submit"] + input[type="submit"] {
         float: left;
         margin: 0 0 0 15px;

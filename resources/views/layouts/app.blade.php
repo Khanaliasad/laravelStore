@@ -11,7 +11,6 @@
 
     <link rel="stylesheet" href="{{ asset('css/style.css') }}" />
 
-{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--}}
     <script src='{{ asset('js/jquery-1.8.3.min.js') }}'></script>
     <script src="{{ asset('js/html5.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
@@ -25,6 +24,9 @@
     <script src="{{ asset('js/jquery.easing.1.2.js') }}"></script>
     <script src="{{ asset('js/jquery.anythingslider.js') }}"></script>
     <script src="{{ asset('js/jquery.anythingslider.fx.js') }}"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
+    {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--}}
 </head>
 
 <body>
@@ -35,6 +37,8 @@
     <div class="container">@yield('content')</div>
 
     @include('partials._footer')
+    @yield('end_script')
+
 </body>
 
 </html>
