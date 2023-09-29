@@ -6,7 +6,7 @@ use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
-class CatagoryController extends Controller
+class CategoryController extends Controller
 {
     private $arr;
 
@@ -14,17 +14,17 @@ class CatagoryController extends Controller
     {
         $path = $request->path();
         $show = $request->input('show', 3);
-        $page = $request->input('page',1);
+        $page = $request->input('page', 1);
+        $sort = $request->input('sort', "price");
         $crumb = explode("/", $path);
         $requestedCategory = str_replace("-", " ", $crumb[1]);
         $requestedCategoryId = Category::all()->where("name", $requestedCategory)->pluck('id')->first();
         if (is_null($requestedCategoryId)) {
             return abort(404);
         }
-        $products = Product::where('category_id', $requestedCategoryId)
-            ->with('variants.images');
-
-        $totalProducts = count($products->get()->toArray());
+        $products = Product::where('category_id', $requestedCategoryId);
+        $products->with('variants.images')->orderBy($sort);
+        $totalProducts = $products->count();
         $totalPages = ceil($totalProducts / $show);
         $products->Paginate($show);
         $this->arr = ["products" => $products->get(), compact('path', 'crumb', 'totalPages', 'totalProducts', 'requestedCategoryId', 'requestedCategory', "show", "page")];

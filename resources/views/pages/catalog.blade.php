@@ -227,7 +227,6 @@
                     setPagination(response[0].totalPages)
                     changeCurrentPage(response[0].page);
                     setPaginationDetails(response[0].show,response[0].page,response[0].totalProducts)
-
                     // Append data to the recipe list
                     response.products.forEach(function (product) {
 
@@ -247,7 +246,7 @@
                             <div class="cart">
                             <div class="price">
                             <div class="vert">
-                            Rs ${product?.variants[0]?.price} {{--
+                            Rs ${product?.price} {{--
                             <div class="price_old">$725.00</div>
                             --}}
                         </div>

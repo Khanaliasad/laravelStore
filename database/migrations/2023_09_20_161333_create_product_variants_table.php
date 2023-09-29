@@ -16,7 +16,6 @@ return new class extends Migration
             $table->unsignedBigInteger('product_id');
             $table->string('color')->nullable();
             $table->string('size');
-            $table->decimal('price', 10, 2);
             $table->integer('stock_quantity')->nullable();
             $table->timestamps();
 

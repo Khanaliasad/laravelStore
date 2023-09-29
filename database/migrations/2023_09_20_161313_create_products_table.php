@@ -15,6 +15,7 @@ return new class extends Migration {
             $table->string('SKU');
             $table->string('name');
             $table->string('fabric')->nullable();
+            $table->decimal('price', 10, 2);
             $table->text('description');
             $table->decimal('weight', 10, 2)->nullable();
             $table->unsignedBigInteger('category_id');

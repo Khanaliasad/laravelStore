@@ -23,6 +23,7 @@ class ProductFactory extends Factory
             'SKU' => Str::random(10),
             'name' => $this->faker->sentence,
             'fabric' => $this->faker->word,
+            'price' => $this->faker->randomFloat(2, 10, 100),
             'description' => $this->faker->paragraphs(3, true),
             'weight' => $this->faker->randomFloat(2, 0.1, 10),
             'category_id' => \App\Models\Category::factory(), // Create a related category
