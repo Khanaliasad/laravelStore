@@ -18,7 +18,7 @@ Route::get('/', [PageController::class, 'home' ] )->name('index');
 
 Route::get('/catalog/{category}', [\App\Http\Controllers\CategoryController::class, 'index'] )->name("catalog.show");
 
-Route::get('/product/{sku}', [App\Http\Controllers\ProductController::class, 'index'])->whereAlphaNumeric('sku')->name("product.page");
+Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'index'])->whereNumber('id')->name("product.page");
 
 // Route::get('/about', 'PageController@about');
 Route::get('/about', [PageController::class, 'about'])->middleware('abc');

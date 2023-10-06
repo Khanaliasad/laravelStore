@@ -1,20 +1,28 @@
 @extends('layouts.app')
+@section('title')
+    {{$product['name']}}
+@endsection
 @section('content')
     <section id="main">
         <div class="container_12">
             <div id="content" class="grid_12">
                 <header>
-                    <h1 class="page_title">handmade Cut Emerald Ring</h1>
+                    <h1 class="page_title">{{$product['name']}}</h1>
                 </header>
 
                 <article class="product_page negative-grid">
                     <div class="grid_5 img_slid" id="products">
-                        <img class="sale" src="{{ asset('img/sale.png') }}" alt="Sale">
+                        @if($product['attribute'])
+                            <img class="sale" src="{{ asset('img/'.$product['attribute'].'.png') }}"
+                                 alt="{{$product['attribute']}}">
+                        @endif
                         <div class="preview slides_container">
                             <div class="prev_bg">
-                                <a href="img/content/product1.png" class="jqzoom" rel='gal1' title="">
-                                    <img src="{{ asset('img/content/product1.png') }}" alt="Product 1" title=""
-                                        style="width: 100%">
+                                <a href="{{asset($product['variants'][0]['images'][0]['image_path'])}}" class="jqzoom"
+                                   rel='gal1' title="">
+                                    <img src="{{ asset($product['variants'][0]['images'][0]['image_path']) }}"
+                                         alt="Product 1" title=""
+                                         style="width: 100%">
                                 </a>
                             </div>
                         </div><!-- .preview -->
@@ -25,21 +33,31 @@
                         </div><!-- .next_prev -->
 
                         <ul class="small_img clearfix" id="thumblist">
-                            <li><a class="zoomThumbActive" href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product1.png') }}',largeimage: '{{ asset('img/content/product1.png') }}'}"><img
-                                        src='{{ asset('img/content/product1.png') }}' alt=""></a></li>
-                            <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product2.png') }}',largeimage: '{{ asset('img/content/product2.png')}}'}"><img
-                                        src='{{ asset('img/content/product2.png') }}' alt=""></a></li>
-                            <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product3.png')}}',largeimage: '{{ asset('img/content/product3.png')}}'}"><img
-                                        src='{{ asset('img/content/product3.png') }}' alt=""></a></li>
-                            <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product4.png')}}',largeimage: '{{ asset('img/content/product4.png')}}'}"><img
-                                        src='{{ asset('img/content/product4.png') }}' alt=""></a></li>
-                            <li><a href='javascript:void(0);'
-                                    rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product5.png')}}',largeimage: '{{ asset('img/content/product5.png')}}'}"><img
-                                        src='{{ asset('img/content/product5.png') }}' alt=""></a></li>
+                            @foreach($product['variants'] as $variant)
+                                @foreach($variant['images'] as $image)
+                                    <li>
+                                        <a class="zoomThumbActive" href='javascript:void(0);'
+                                           rel="{gallery: 'gal1', smallimage: '{{ asset($image['image_path']) }}',largeimage: '{{ asset($image['image_path']) }}'}">
+                                            <img src='{{ asset($image['image_path']) }}' alt="{{$product['name']}}">
+                                        </a>
+                                    </li>
+                                @endforeach
+                            @endforeach
+                            {{--  <li><a class="zoomThumbActive" href='javascript:void(0);'
+                                     rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product1.png') }}',largeimage: '{{ asset('img/content/product1.png') }}'}"><img
+                                          src='{{ asset('img/content/product1.png') }}' alt=""></a></li>
+                              <li><a href='javascript:void(0);'
+                                     rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product2.png') }}',largeimage: '{{ asset('img/content/product2.png')}}'}"><img
+                                          src='{{ asset('img/content/product2.png') }}' alt=""></a></li>
+                              <li><a href='javascript:void(0);'
+                                     rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product3.png')}}',largeimage: '{{ asset('img/content/product3.png')}}'}"><img
+                                          src='{{ asset('img/content/product3.png') }}' alt=""></a></li>
+                              <li><a href='javascript:void(0);'
+                                     rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product4.png')}}',largeimage: '{{ asset('img/content/product4.png')}}'}"><img
+                                          src='{{ asset('img/content/product4.png') }}' alt=""></a></li>
+                              <li><a href='javascript:void(0);'
+                                     rel="{gallery: 'gal1', smallimage: '{{ asset('img/content/product5.png')}}',largeimage: '{{ asset('img/content/product5.png')}}'}"><img
+                                          src='{{ asset('img/content/product5.png') }}' alt=""></a></li>--}}
                         </ul><!-- .small_img -->
 
                         <div id="pagination"></div>
@@ -50,26 +68,14 @@
                             <div class="soc">
                                 <img src="{{ asset('img/soc.png') }}" alt="Soc">
                             </div><!-- .soc -->
+                            <div class="clear"></div>
 
-                            <div class="review">
-                                <a class="plus" href="#"></a>
-                                <a class="plus" href="#"></a>
-                                <a class="plus" href="#"></a>
-                                <a href="#"></a>
-                                <a href="#"></a>
-                                <span><strong>3</strong> REVIEW(S)</span>
-                                <span class="separator">|</span>
-                                <a class="add_review" href="#">ADD YOUR REVIEW</a>
-                            </div>
-
-                            <p>Duis mollis, augue rutrum viverra pellentesque, odio lacus feugiat neque, eget pulvinar enim
-                                dui vitae enim. Suspendisse adipiscing sollicitudin scelerisque. Vivamus mattis lacinia
-                                nulla vel adipiscing. Phasellus et lacus at eros scelerisque auctor eu eu nisl.</p>
+                            <p>{{$product['detail']}}</p>
 
                             <div class="ava_price">
                                 <div class="price">
-                                    <div class="price_old">$1,725.00</div>
-                                    $1,550.00
+                                    {{--                                    <div class="price_old">$1,725.00</div>--}}
+                                    Rs {{$product['price']}}
                                 </div><!-- .price -->
 
                                 <div class="availability_sku">
@@ -77,207 +83,121 @@
                                         Availability: <span>In stock</span>
                                     </div>
                                     <div class="sku">
-                                        SKU: <span>Candles OV</span>
+                                        SKU: <span>{{$product['SKU']}}</span>
                                     </div>
+
+
                                 </div><!-- .availability_sku -->
+                                <div class="availability_sku" style="margin-left: 10px">
+                                    @if($product['fabric'])
+                                        <div class="sku">
+                                            Fabric: <span>{{$product['fabric']}}</span>
+                                        </div>
+                                    @endif
+                                    @if($product['weight'])
+                                        <div class="sku">
+                                            Weight: <span>{{$product['weight']}}</span>
+                                        </div>
+                                    @endif
+                                </div><!-- .availability_sku -->
+
                                 <div class="clear"></div>
                             </div><!-- .ava_price -->
 
                             <div class="parameter_selection">
-                                <select>
-                                    <option>Select a size</option>
-                                    <option>Select a size</option>
-                                </select>
-                                <select>
-                                    <option>Choose a material</option>
-                                    <option>Choose a material</option>
-                                </select>
+
+                                <div class="swatches">
+
+                                    <div class="swatch clearfix">
+                                        <div class="header">Color</div>
+                                        <div id="product-varient-color">
+                                            @foreach($product['variants'] as $variant)
+                                                <div data-value="{{ $variant['color'] }}"
+                                                     class="swatch-element color {{ strtolower($variant['color']) }} available">
+                                                    <div class="tooltip">{{ $variant['color'] }}</div>
+                                                    <input quickbeam="color"
+                                                           id="swatch-1-{{ strtolower($variant['color']) }}"
+                                                           type="radio" name="option-{{$variant['color']}}"
+                                                           value="{{ $variant['color'] }}"
+                                                    />
+                                                    <label for="swatch-1-{{ strtolower($variant['color']) }}"
+                                                           style="border-color: {{ strtolower($variant['color']) }};">
+                                                        <span
+                                                            style="background-color: {{ strtolower($variant['color']) }};"></span>
+                                                    </label>
+                                                </div>
+                                            @endforeach
+                                        </div>
+                                    </div>
+                                    <div class="swatch clearfix">
+                                        <div class="header">Size</div>
+                                        <div id="product-varient-size">
+                                            <div data-value="{{ $variant['size'] }}"
+                                                 class="swatch-element plain size {{ strtolower($variant['size']) }} available">
+                                                <div>Kindly Select color to view available sizes</div>
+                                            </div>
+                                        </div>
+                                    </div>
+
+
+                                </div>
                             </div><!-- .parameter_selection -->
+                            <div class="swatch size_graph">
+                                <div class="size_graph_element">
+                                    <div class="tooltip">Click to view Size Guide</div>
+                                    <button class="modal-open" data-modal="modal1">
+                                        size guide
+                                   </button>
+                                </div>
+                                <div class="clear"></div>
+                            </div>
 
                             <div class="cart">
                                 <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}" alt="Buy"
-                                        title="">Add to Cart</a>
-                                <a href="#" class="wishlist"><span></span>Add to Compare</a>
-                                <a href="#" class="compare"><span></span>Add to Compare</a>
+                                                                      title="">Add to Cart</a>
+                                {{--                                <a href="#" class="wishlist"><span></span>Add to Compare</a>--}}
+                                {{--                                <a href="#" class="compare"><span></span>Add to Compare</a>--}}
                             </div><!-- .cart -->
 
                         </div><!-- .entry_content -->
                     </div><!-- .grid_7 -->
                     <div class="clear"></div>
+                    <!-- .modal -->
+                    <div class="modal" id="modal1">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                Size Guide
+                                <button class="modal-close">
+                                    <ion-icon class="close-icon" name="close-outline">Close</ion-icon>
+                                </button>
+                            </div>
+                            <div class="modal-body modal-one">
+                                <img
+                                    src="{{asset('img/Size-Chart.png')}}"
+                                    alt="Size Guide"
+
+                                />
+                            </div>
+                            <div class="modal-footer">
+                                <button class="button close-btn modal-close">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end .modal -->
 
                     <div class="grid_12">
                         <div id="wrapper_tab" class="tab1">
                             <a href="#" class="tab1 tab_link">Description</a>
-                            <a href="#" class="tab2 tab_link">Reviews</a>
-                            <a href="#" class="tab3 tab_link">Custom Tab</a>
-
                             <div class="clear"></div>
-
                             <div class="tab1 tab_body">
                                 <h4>About This Item</h4>
-                                <p>Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet. Maecenas
-                                    tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum adipiscing, eros quis
-                                    lobortis dictum. Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat
-                                    volutpat. Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis
-                                    rhoncus lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate
-                                    pulvinar adipiscing.</p>
-                                <ul>
-                                    <li>She was walking to the mall.</li>
-                                    <li>Ted might eat the cake.</li>
-                                    <li>You must go right now.</li>
-                                    <li>Words were spoken.</li>
-                                    <li>The teacher is writing a report.</li>
-                                </ul>
-
-                                <p>Here are some verb phrase examples where the verb phrase is the predicate of a sentence.
-                                    In this case, the verb phrase consists of the main verb plus any auxiliary, or helping,
-                                    verbs. Nulla nec velit. Mauris pulvinar erat non massa. Suspendisse tortor turpis, porta
-                                    nec, tempus vitae, iaculis semper, pede.</p>
-                                <ol>
-                                    <li>Shipping & Delivery.</li>
-                                    <li>Privacy & Security.</li>
-                                    <li>Returns & Replacements.</li>
-                                    <li>Payment, Pricing & Promotions.</li>
-                                    <li>Viewing Orders.</li>
-                                </ol>
-                                <p>Next are some verb phrase examples of verb phrases where the phrase has a single function
-                                    which means it can act like an adverb or an adjective. The phrase would include the verb
-                                    and any modifiers, complements, or objects. Lorem ipsum dolor sit amet, consectetuer
-                                    adipiscing elit. Morbi luctus. Duis lobortis. Lorem ipsum dolor sit amet, consectetur
-                                    adipiscing elit. Curabitur nec posuere odio. Proin vel ultrices erat.</p>
+                                <p>{{$product['description']}}</p>
                                 <div class="clear"></div>
                             </div><!-- .tab1 .tab_body -->
 
-                            <div class="tab2 tab_body">
-                                <h4>Customer reviews</h4>
-
-                                <ul class="comments">
-                                    <li>
-                                        <div class="autor">Mike Example</div>, <time
-                                            datetime="2012-11-03">03.11.2012</time>
-
-                                        <div class="evaluation">
-                                            <div class="quality">
-                                                <span>Quality</span>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a href="#"></a>
-                                                <a href="#"></a>
-                                            </div>
-                                            <div class="price">
-                                                <span>Price</span>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus_minus" href="#"></a>
-                                                <a href="#"></a>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div><!-- .evaluation -->
-
-                                        <p>Suspendisse at placerat turpis. Duis luctus erat vel magna pharetra aliquet.
-                                            Maecenas tincidunt feugiat ultricies. Phasellus et dui risus. Vestibulum
-                                            adipiscing, eros quis lobortis dictum. It enim ad minim veniam, quis nostrud
-                                            exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    </li>
-
-                                    <li>
-                                        <div class="autor">Mike Example</div>, <time
-                                            datetime="2012-11-03">01.11.2012</time>
-
-                                        <div class="evaluation">
-                                            <div class="quality">
-                                                <span>Quality</span>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus_minus" href="#"></a>
-                                            </div>
-                                            <div class="price">
-                                                <span>Price</span>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a class="plus" href="#"></a>
-                                                <a href="#"></a>
-                                            </div>
-                                            <div class="clear"></div>
-                                        </div><!-- .evaluation -->
-
-                                        <p>Etiam mollis volutpat odio, id euismod justo gravida a. Aliquam erat volutpat.
-                                            Phasellus faucibus venenatis lorem, vitae commodo elit pretium et. Duis rhoncus
-                                            lobortis congue. Vestibulum et purus dui, vel porta lectus. Sed vulputate
-                                            pulvinar adipiscing. It enim ad minim veniam, quis nostrud exercitation ullamco
-                                            laboris nisi ut aliquip ex ea commodo consequat.</p>
-                                    </li>
-                                </ul><!-- .comments -->
-
-                                <form class="add_comments">
-                                    <h4>Write Your Own Review</h4>
-
-                                    <div class="evaluation">
-                                        <div class="quality">
-                                            Quality<sup>*</sup>
-                                            <input class="niceRadio" type="radio" name="quality" value="1"><span
-                                                class="eva_num">1</span>
-                                            <input class="niceRadio" type="radio" name="quality" value="2"><span
-                                                class="eva_num">2</span>
-                                            <input class="niceRadio" type="radio" name="quality" value="3"><span
-                                                class="eva_num">3</span>
-                                            <input class="niceRadio" type="radio" name="quality" value="4"><span
-                                                class="eva_num">4</span>
-                                            <input class="niceRadio" type="radio" name="quality" value="5"><span
-                                                class="eva_num">5</span>
-                                        </div>
-                                        <div class="price">
-                                            Price<sup>*</sup>
-                                            <input class="niceRadio" type="radio" name="price" value="1"><span
-                                                class="eva_num">1</span>
-                                            <input class="niceRadio" type="radio" name="price" value="2"><span
-                                                class="eva_num">2</span>
-                                            <input class="niceRadio" type="radio" name="price" value="3"><span
-                                                class="eva_num">3</span>
-                                            <input class="niceRadio" type="radio" name="price" value="4"><span
-                                                class="eva_num">4</span>
-                                            <input class="niceRadio" type="radio" name="price" value="5"><span
-                                                class="eva_num">5</span>
-                                        </div>
-                                        <div class="clear"></div>
-                                    </div><!-- .evaluation -->
-
-                                    <div class="nickname">
-                                        <strong>Nickname</strong><sup>*</sup><br>
-                                        <input type="text" name="" class="" value="">
-                                    </div><!-- .nickname -->
-
-                                    <div class="your_review">
-                                        <strong>Summary of Your Review</strong><sup>*</sup><br>
-                                        <input type="text" name="" class="" value="">
-                                    </div><!-- .your_review -->
-
-                                    <div class="text_review">
-                                        <strong>Review</strong><sup>*</sup><br>
-                                        <textarea name="text"></textarea><br>
-                                        <i>Note: HTML is not translated!</i>
-                                    </div><!-- .text_review -->
-
-                                    <div class="clear"></div>
-
-
-
-                                    <input type="submit" value="Submit Review">
-                                </form><!-- .add_comments -->
-                                <div class="clear"></div>
-                            </div><!-- .tab2 .tab_body -->
-
-                            <div class="tab3 tab_body">
-                                <h4>Custom Tab</h4>
-                                <div class="clear"></div>
-                            </div><!-- .tab3 .tab_body -->
                             <div class="clear"></div>
-                        </div>​<!-- #wrapper_tab -->
+                        </div>
+                        ​<!-- #wrapper_tab -->
                         <div class="clear"></div>
                     </div><!-- .grid_12 -->
                     <div class="clear"></div>
@@ -298,35 +218,44 @@
 
                     <div class="related_list">
                         <ul id="listing" class="products">
-                            <li>
-                                <article class="grid_3 article">
-                                    <img class="sale" src="{{ asset('img/sale.png') }}" alt="Sale">
-                                    <div class="prev">
-                                        <a href="/product_page.html"><img src="{{ asset('img/content/product1.png') }}"
-                                                alt="Product 1" title=""></a>
-                                    </div><!-- .prev -->
+                            @foreach($relatedProducts as $relatedProduct)
+                                <li>
+                                    <article class="grid_3 article">
+                                        @if($relatedProduct['attribute'])
+                                            <img class="sale"
+                                                 src="{{ asset('img/'.$relatedProduct['attribute'].'.png') }}"
+                                                 alt="Sale">
+                                        @endif
+                                        <div class="prev">
+                                            <a href="{{route('product.page',$relatedProduct['id'])}}"><img
+                                                    src="{{ asset($relatedProduct['variants'][0]['images'][0]['image_path']) }}"
+                                                    alt="{{$relatedProduct['name']}}"
+                                                    title="{{$relatedProduct['name']}}"></a>
+                                        </div><!-- .prev -->
 
-                                    <h3 class="title">handmade Emerald Cut<br> Emerald Ring</h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                $550.00
-                                                <div class="price_old">$725.00</div>
+                                        <h3 class="title">{{$relatedProduct['name']}}</h3>
+                                        <div class="cart">
+                                            <div class="price">
+                                                <div class="vert">
+                                                    Rs {{$relatedProduct['price']}}
+                                                    <div class="price_old">Rs {{$relatedProduct['old_price']}}</div>
+                                                </div>
                                             </div>
-                                        </div>
-                                        <a href="#" class="compare"></a>
-                                        <a href="#" class="wishlist"></a>
-                                        <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                alt="Buy" title=""></a>
-                                    </div><!-- .cart -->
-                                </article><!-- .grid_3.article -->
-                            </li>
+                                            {{--                                            <a href="#" class="compare"></a>--}}
+                                            {{--                                            <a href="#" class="wishlist"></a>--}}
+                                            <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
+                                                                         alt="Buy" title=""></a>
+                                        </div><!-- .cart -->
+                                    </article><!-- .grid_3.article -->
+                                </li>
+
+                            @endforeach
 
                             <li>
                                 <article class="grid_3 article">
                                     <div class="prev">
                                         <a href="/product_page.html"><img src="{{ asset('img/content/product2.png') }}"
-                                                alt="Product 2" title=""></a>
+                                                                          alt="Product 2" title=""></a>
                                     </div><!-- .prev -->
 
                                     <h3 class="title">beautiful Valentine And Engagement</h3>
@@ -340,7 +269,7 @@
                                         <a href="#" class="compare"></a>
                                         <a href="#" class="wishlist"></a>
                                         <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                alt="Buy" title=""></a>
+                                                                     alt="Buy" title=""></a>
                                     </div><!-- .cart -->
                                 </article><!-- .grid_3.article -->
                             </li>
@@ -350,7 +279,7 @@
                                     <img class="sale" src="{{ asset('img/new.png') }}" alt="New">
                                     <div class="prev">
                                         <a href="/product_page.html"><img src="{{ asset('img/content/product3.png') }}"
-                                                alt="Product 3" title=""></a>
+                                                                          alt="Product 3" title=""></a>
                                     </div><!-- .prev -->
 
                                     <h3 class="title">Emerald Cut Emerald Ring</h3>
@@ -364,7 +293,7 @@
                                         <a href="#" class="compare"></a>
                                         <a href="#" class="wishlist"></a>
                                         <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                alt="Buy" title=""></a>
+                                                                     alt="Buy" title=""></a>
                                     </div><!-- .cart -->
                                 </article><!-- .grid_3.article -->
                             </li>
@@ -373,7 +302,7 @@
                                 <article class="grid_3 article">
                                     <div class="prev">
                                         <a href="/product_page.html"><img src="{{ asset('img/content/product4.png') }}"
-                                                alt="Product 4" title=""></a>
+                                                                          alt="Product 4" title=""></a>
                                     </div><!-- .prev -->
 
                                     <h3 class="title">Diamond Necklaces and Pendants</h3>
@@ -387,7 +316,7 @@
                                         <a href="#" class="compare"></a>
                                         <a href="#" class="wishlist"></a>
                                         <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                alt="Buy" title=""></a>
+                                                                     alt="Buy" title=""></a>
                                     </div><!-- .cart -->
                                 </article><!-- .grid_3.article -->
                             </li>
@@ -396,7 +325,7 @@
                                 <article class="grid_3 article">
                                     <div class="prev">
                                         <a href="/product_page.html"><img src="{{ asset('img/content/product5.png') }}"
-                                                alt="Product 5" title=""></a>
+                                                                          alt="Product 5" title=""></a>
                                     </div><!-- .prev -->
 
                                     <h3 class="title">Emerald Diamond Solitaire</h3>
@@ -410,7 +339,7 @@
                                         <a href="#" class="compare"></a>
                                         <a href="#" class="wishlist"></a>
                                         <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                alt="Buy" title=""></a>
+                                                                     alt="Buy" title=""></a>
                                     </div><!-- .cart -->
                                 </article><!-- .grid_3.article -->
                             </li>
@@ -425,4 +354,113 @@
         </div><!-- .container_12 -->
     </section><!-- #main -->
     <div class="clear"></div>
+@endsection
+@section("end_script")
+    <script>
+
+        $(document).ready(function () {
+            var uniqueValues = {};
+
+            $('#product-varient-color').children().each(function () {
+                var dataValue = $(this).attr('data-value');
+
+                // Check if the value is not already in the object
+                if (!uniqueValues[dataValue]) {
+                    // Append the value to the object to keep track of it
+                    uniqueValues[dataValue] = true;
+
+                    // Remove existing children
+                    $('#product-varient-color').children().remove();
+
+                    // Append only unique values
+                    Object.keys(uniqueValues).forEach(function (uniqueValue) {
+                        $('#product-varient-color').append(` <div data-value="${uniqueValue}" class="swatch-element color ${uniqueValue.toLowerCase()} available">
+                    <div class="tooltip">${uniqueValue}</div>
+                    <input quickbeam="color" id="swatch-1-${uniqueValue.toLowerCase()}" type="radio" name="option-1" value="${uniqueValue}"  onchange="handleColorRadioChange(this)"/>
+                    <label for="swatch-1-${uniqueValue.toLowerCase()}" style="border-color: ${uniqueValue.toLowerCase()};">
+                        <span style="background-color: ${uniqueValue.toLowerCase()};"></span>
+                    </label>
+                </div>`);
+                    });
+                }
+            });
+
+
+        });
+
+        function handleColorRadioChange(radio) {
+            let product = @json($product);
+            //removing all current sizes
+            $('#product-varient-size').children().remove();
+            //adding right sizes
+            product.variants.forEach((elem) => {
+                if (elem.color === radio.value) {
+                    updatesizeRadio(elem);
+                }
+            })
+        }
+
+
+        function updatesizeRadio(variant) {
+            $('#product-varient-size').append(`
+                <div
+                data-varientid="${variant.id}"
+                data-varient="${JSON.stringify(variant)}"
+                class="swatch-element plain size ${variant.size.toLowerCase()} available ">
+                <input
+                id='swatch-${variant.size.toLowerCase()}'
+                type="radio" name="size-option-${variant.size}"
+                value="${variant.size}"
+                onclick="handleSizeClick(this)"
+                />
+                <label for="swatch-${variant.size.toLowerCase()}">
+                ${variant.size}
+                </label>
+            </div>
+            `)
+        }
+
+        function handleSizeClick(element) {
+            // Remove the 'selected-size' class from all inputs with the same name
+            $('.selected-size').removeClass('selected-size')
+
+            // Add the 'selected-size' class to the clicked input
+            element.parentElement.classList.add('selected-size');
+
+            // Your existing click handling logic
+            let variantId = $(element).parent().data('varientid');
+
+            if (variantId) {
+                console.log(variantId);
+                saveSelectedVariant(variantId);
+            }
+        }
+
+        const modalOpenBtns = document.querySelectorAll(".modal-open");
+        const modalCloseBtns = document.querySelectorAll(".modal-close");
+        const body = document.querySelector("body");
+        modalOpenBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                let modal = btn.getAttribute("data-modal");
+                document.getElementById(modal).style.display = "block";
+                body.classList.add("prevent-background-scroll");
+            });
+        });
+
+        modalCloseBtns.forEach((btn) => {
+            btn.addEventListener("click", (e) => {
+                let modal = (btn.closest(".modal").style.display = "none");
+                body.classList.remove("prevent-background-scroll");
+            });
+        });
+
+        document.addEventListener("click", (e) => {
+            if (e.target.classList.contains("modal")) {
+                e.target.style.display = "none";
+                body.classList.remove("prevent-background-scroll");
+            }
+        });
+
+
+    </script>
 @endsection

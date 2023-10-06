@@ -1,7 +1,7 @@
 $(document).ready(function() {
     // SelectBox
     $('select').selectBox();
-       
+
     // Cart
     $(function() {
 	$('#cart_nav').hover(
@@ -21,7 +21,7 @@ $(document).ready(function() {
                 $(this).find('.checkout').transition({ left: '147px', delay: 400 });
 	});
     });
-    
+
     //Top menu
     $(function(){
         $(".menu-open").click(function(){
@@ -36,7 +36,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     //Search
     $(function(){
         $("form.search").focusin(function(){
@@ -65,7 +65,7 @@ $(document).ready(function() {
             }
         });
     });
-    
+
     //Primary menu
     $('.parent').hover(function(){
         if ($(window).width() >= 1008){
@@ -80,7 +80,7 @@ $(document).ready(function() {
             $(this).find('.sub').slideUp();
         }
     });
-        
+
     (function(){
         $('.primary .menu-select').toggle(function(){
             $('.primary > ul').slideDown('slow');
@@ -156,7 +156,7 @@ $(document).ready(function() {
 	    prev: '#img_prev',
 	    next: '#img_next',
             pagination  : '#pagination',
-	    auto: false,
+	    auto: true,
             swipe: {
                 onMouse: true,
                 onTouch: true
@@ -164,7 +164,7 @@ $(document).ready(function() {
 	});
         $(window).resize();
     });
-    
+
     // Zoomer
     $('.jqzoom').jqzoom({
 	zoomType: 'standard',
@@ -172,7 +172,7 @@ $(document).ready(function() {
 	preloadImages: true,
 	alwaysOn:false
     });
-    
+
     // Tabs
     $('#wrapper_tab a').click(function() {
 	if ($(this).attr('class') != $('#wrapper_tab').attr('class') ) {
@@ -180,7 +180,7 @@ $(document).ready(function() {
 	}
         return false;
     });
-    
+
     // Animations product
     $(function() {
 	$(".article").hover(
@@ -200,7 +200,7 @@ $(document).ready(function() {
                 $(this).find(".price").transition({ left: '60px', textAlign:'center' });
 	});
     });
-    
+
     //Slider Home
     $(function(){
 	$('#slider').anythingSlider({
@@ -210,7 +210,7 @@ $(document).ready(function() {
 	    delay               : 4000,
 	    pauseOnHover        : false,
             startPanel          : 1,
-            
+
             onInitialized: function(e, slider) {
                 $(slider.el).swipe({
                     swipeLeft: function() { slider.goForward() },
@@ -223,12 +223,12 @@ $(document).ready(function() {
 		'.slid_content p' : [ 'caption-Left', '610px', '600' ],
 		'.slid_content .buy_now' : [ 'caption-Left', '1220px', '1000' ]
 	});
-	
+
         var gridWidth = $(".container_12 .grid_12").outerWidth();
 	$('#slider_body .anythingSlider').css({
 		'max-height': gridWidth/2.66 + 'px'
-                
+
 	});
     });
-   
+
 });

@@ -26,6 +26,7 @@ class PageController extends Controller
 
         foreach ($categoryIds as $category) {
             $categoryProducts = Product::where('category_id', $category)
+                ->whereIn('attribute', ['top', 'sale', 'new'])
                 ->with('variants.images')
                 ->limit(2)
                 ->get()

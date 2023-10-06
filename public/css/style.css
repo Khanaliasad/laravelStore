@@ -2257,7 +2257,7 @@ img.sale {
     display: block;
     float: right;
     height: 27px;
-    margin: 10px 0 0 0;
+    margin: 20px 0 0 0;
     opacity: 0;
     filter: progid:DXImageTransform.Microsoft.Alpha(opacity=0);
     padding: 11px 0 0 0;
@@ -2440,6 +2440,7 @@ article.product_page .cart a.bay {
     text-decoration: none;
     text-transform: uppercase;
     width: 128px;
+    margin: 37px 0 0 0;
 }
 .products_list article .cart a.bay:hover,
 article.product_page .cart a.bay:hover {
@@ -4793,5 +4794,12 @@ ul.f_contact li+li+li {
     .form_style input[type="submit"] + input[type="submit"] {
         float: left;
         margin: 0 0 0 15px;
+    }
+
+    .product-form__label{
+        display: inline-block;
+        vertical-align: top;
+        cursor: pointer;
+        margin: 5px 10px 10px 0px;
     }
 }

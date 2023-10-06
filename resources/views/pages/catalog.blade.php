@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('title')
-    Catalog
+    {{$requestedCategory}}
 @endsection
 
 @section('content')
@@ -15,7 +15,7 @@
                         <select id="showProductQty">
                             @for($i = 1; $i <= 10; $i++)
                                 <option
-                                        value="{{$i}}">
+                                    value="{{$i}}">
                                     {{$i}}
                                 </option>
                             @endfor
@@ -56,7 +56,7 @@
 
                 </div><!-- .pagination -->
                 <p class="pagination_info">Displaying <span class="productsFrom"></span> to <span
-                            class="productsTo"></span> (of <span class="totalProducts"></span> products)</p>
+                        class="productsTo"></span> (of <span class="totalProducts"></span> products)</p>
 
                 <div class="clear"></div>
             </div><!-- #content -->
@@ -73,11 +73,11 @@
                             @foreach($categories as $category)
                                 @if($requestedCategory == $category )
                                     <li class="current"><a
-                                                href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
+                                            href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
                                     </li>
                                 @else
                                     <li class=""><a
-                                                href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
+                                            href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a>
                                     </li>
                                 @endif
 
@@ -213,7 +213,20 @@
             let sort = getCurrentSortBy();
             let url = "{{ route('catalog.show',$crumb[count($crumb)-1]) }}";
             let cart = "{{ asset('img/bg_cart.png')}}";
-            let sale = "{{ asset('img/sale.png')}}";
+            {{--let attribute = {--}}
+            {{--    sale: "{{ asset('img/sale.png')}}",--}}
+            {{--    top: "{{ asset('img/top.png')}}",--}}
+            {{--    new: "{{ asset('img/new.png')}}"--}}
+            {{--};--}}
+            function getAttributeImage(key) {
+                let attribute = {
+                    sale: "{{ asset('img/sale.png')}}",
+                    top: "{{ asset('img/top.png')}}",
+                    new: "{{ asset('img/new.png')}}"
+                };
+
+                return attribute.hasOwnProperty(key) ? attribute[key] : null;
+            }
 
             $.ajax({
                 url: url + '?page=' + page + "&show=" + show + "&sort=" + sort,
@@ -226,15 +239,14 @@
                     $("SELECT").selectBox().load(productsShow(response[0].show));
                     setPagination(response[0].totalPages)
                     changeCurrentPage(response[0].page);
-                    setPaginationDetails(response[0].show,response[0].page,response[0].totalProducts)
+                    setPaginationDetails(response[0].show, response[0].page, response[0].totalProducts)
                     // Append data to the recipe list
                     response.products.forEach(function (product) {
-
                         let productRoute = `/product/${product.id}`;
 
                         $(".products.catalog.negative-grid").append(`
                             <article class="grid_3 article">
-                            <img class="sale" src="${sale}" alt="Sale" />
+                            ${getAttributeImage(product.attribute) ? `<img class="sale" src="${getAttributeImage(product.attribute)}" alt="Sale" />` : ''}
                             <div class="prev">
                             <a href="${productRoute}">
                             <img src="${product.variants[0]?.images[0]?.image_path}" alt="${product.name}" title=""
@@ -370,14 +382,14 @@
             }
             return $("div .sort .selectBox-label").text();
         }
-        function setPaginationDetails(show,page,totalProducts) {
-            let from = show*page-show+1;
-            let to = show*page<totalProducts?show*page:totalProducts;
+
+        function setPaginationDetails(show, page, totalProducts) {
+            let from = show * page - show + 1;
+            let to = show * page < totalProducts ? show * page : totalProducts;
 
             $(".totalProducts").text(totalProducts);
             $(".productsFrom").text(from);
             $(".productsTo").text(to);
         }
-        // setPaginationDetails(3,1,10);
     </script>
 @endsection

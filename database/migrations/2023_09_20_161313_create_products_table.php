@@ -16,7 +16,10 @@ return new class extends Migration {
             $table->string('name');
             $table->string('fabric')->nullable();
             $table->decimal('price', 10, 2);
+            $table->decimal('old_price', 10, 2)->nullable();
+            $table->string('attribute')->nullable();
             $table->text('description');
+            $table->text('detail');
             $table->decimal('weight', 10, 2)->nullable();
             $table->unsignedBigInteger('category_id');
             $table->timestamps();

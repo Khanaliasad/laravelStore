@@ -17,9 +17,11 @@
                     @foreach($homeProducts as $product )
                         {{--/*<?= dd(asset($product["variants"][0]["images"][0]["image_path"])) ?>*/--}}
                                 <article class="grid_3 article">
-                                    <img class="sale" src="img/sale.png" alt="Sale"/>
+                                    @if($product['attribute'])
+                                        <img class="sale" src="{{ asset('img/'.$product['attribute'].'.png') }}" alt="Sale">
+                                    @endif
                                     <div class="prev">
-                                        <a href="{{route("product.page",$product["SKU"])}}"
+                                        <a href="{{route("product.page",$product["id"])}}"
                                         ><img
                                                 src="{{asset($product["variants"][0]["images"][0]["image_path"])}}"
                                                 alt="{{$product["name"]}}"
@@ -35,8 +37,8 @@
                                     <div class="cart">
                                         <div class="price">
                                             <div class="vert">
-                                                Rs {{$product["variants"][0]["price"]}}
-{{--                                                <div class="price_old">$725.00</div>--}}
+                                                Rs {{$product["price"]}}
+                                                <div class="price_old">Rs {{$product["old_price"]}}</div>
                                             </div>
                                         </div>
 {{--                                        <a href="#" class="compare"></a>--}}
