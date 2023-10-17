@@ -15,8 +15,9 @@
 
                     <ul id="cart_nav">
                         <li>
-                            <a class="cart_li" href="#">
+                            <a class="cart_li" href="{{route('cart')}}">
                                 <div class="cart_ico"></div>
+
                                 Cart
                                 <span>$0.00</span>
                             </a>
@@ -60,7 +61,7 @@
                 <nav class="primary">
                     <div class="bg-menu-select"></div>
                     <a class="menu-select" href="#">Catalog</a>
-                    <ul>
+                    <ul class="nav-menu-list">
                         <li class="curent"><a href="/">Home</a></li>
                         @foreach($categories as $category)
                             <li><a href="{{ route('catalog.show', str_replace(' ', '-', $category)) }}">{{ $category }}</a></li>

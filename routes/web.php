@@ -1,7 +1,9 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
+use App\Http\Controllers\ProductController;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,11 +16,11 @@ use App\Http\Controllers\PageController;
 |
 */
 
-Route::get('/', [PageController::class, 'home' ] )->name('index');
+Route::get('/', [PageController::class, 'home'])->name('index');
 
-Route::get('/catalog/{category}', [\App\Http\Controllers\CategoryController::class, 'index'] )->name("catalog.show");
+Route::get('/catalog/{category}', [CategoryController::class, 'index'])->name("catalog.show");
 
-Route::get('/product/{id}', [App\Http\Controllers\ProductController::class, 'index'])->whereNumber('id')->name("product.page");
+Route::get('/product/{id}', [ProductController::class, 'index'])->whereNumber('id')->name("product.page");
 
 // Route::get('/about', 'PageController@about');
 Route::get('/about', [PageController::class, 'about'])->middleware('abc');
@@ -31,10 +33,6 @@ Auth::routes();
 Route::get('/contact', [PageController::class, 'contact'])->name("contact");
 //Route::post('/contact', [PageController::class, 'postcontact'])->name("contact");
 
-Route::get('/cart', function () {
-    return view('pages.cart');
-})->name("cart");
+Route::get('/cart', [PageController::class, 'cart'])->name("cart");
 
-Route::get('/checkout', function () {
-    return view('pages.checkout');
-})->name("checkout");
+Route::get('/checkout', [PageController::class, 'checkout'])->name("checkout");

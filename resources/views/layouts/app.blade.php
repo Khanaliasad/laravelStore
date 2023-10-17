@@ -9,8 +9,9 @@
 
     <link rel="shortcut icon" href="{{ asset('favicon.ico') }}"/>
 
-    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/toast.css') }}"/>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}"/>
 
     <script src='{{ asset('js/jquery-1.8.3.min.js') }}'></script>
     <script src="{{ asset('js/html5.js') }}"></script>
@@ -26,13 +27,18 @@
     <script src="{{ asset('js/jquery.anythingslider.js') }}"></script>
     <script src="{{ asset('js/jquery.anythingslider.fx.js') }}"></script>
     <script src="{{ asset('js/main.js') }}"></script>
+    <script src="{{ asset('js/toast.js') }}"></script>
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
     <script type="text/javascript" charset="utf8"
             src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
     {{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>--}}
+{{--    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>--}}
+
 </head>
 
 <body>
+
+<div id="toasts"></div>
 @include('partials._top')
 @include('partials._header')
 @include('partials.breadcrumbs')
@@ -51,6 +57,8 @@
     // Store the session ID and user ID in local storage
     localStorage.setItem('sessionId', '{{ session()->getId() }}');
     localStorage.setItem('userId', userId);
+    updateCart()
+
 </script>
 </body>
 

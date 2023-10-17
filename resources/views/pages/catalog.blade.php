@@ -69,7 +69,7 @@
 
                     <nav class="right_menu">
                         <ul>
-                            <li><a href="#">Home</a></li>
+                            <li><a href="{{ route('index') }}">Home</a></li>
                             @foreach($categories as $category)
                                 @if($requestedCategory == $category )
                                     <li class="current"><a
@@ -213,11 +213,6 @@
             let sort = getCurrentSortBy();
             let url = "{{ route('catalog.show',$crumb[count($crumb)-1]) }}";
             let cart = "{{ asset('img/bg_cart.png')}}";
-            {{--let attribute = {--}}
-            {{--    sale: "{{ asset('img/sale.png')}}",--}}
-            {{--    top: "{{ asset('img/top.png')}}",--}}
-            {{--    new: "{{ asset('img/new.png')}}"--}}
-            {{--};--}}
             function getAttributeImage(key) {
                 let attribute = {
                     sale: "{{ asset('img/sale.png')}}",
@@ -230,7 +225,7 @@
 
             $.ajax({
                 url: url + '?page=' + page + "&show=" + show + "&sort=" + sort,
-                method: "GET",
+                type: "GET",
                 dataType: 'JSON',
                 success: function (response) {
                     console.log("response", response)
@@ -265,7 +260,7 @@
                         </div>
 {{-- <a href="#" class="compare"></a>--}}{{-- --}}{{----}}
                         {{--                            <a href="#" class="wishlist"></a>--}}
-                        <a href="#" class="bay"
+                        <a href="${productRoute}" class="bay"
                         ><img src="${cart}" alt="Buy" title=""
                             /></a>
                             </div>

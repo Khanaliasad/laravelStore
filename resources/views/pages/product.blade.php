@@ -147,14 +147,14 @@
                                     <div class="tooltip">Click to view Size Guide</div>
                                     <button class="modal-open" data-modal="modal1">
                                         size guide
-                                   </button>
+                                    </button>
                                 </div>
                                 <div class="clear"></div>
                             </div>
 
                             <div class="cart">
-                                <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}" alt="Buy"
-                                                                      title="">Add to Cart</a>
+                                <a id="addtocart" class="bay"><img src="{{ asset('img/bg_cart.png') }}" alt="Buy"
+                                                                   title="">Add to Cart</a>
                                 {{--                                <a href="#" class="wishlist"><span></span>Add to Compare</a>--}}
                                 {{--                                <a href="#" class="compare"><span></span>Add to Compare</a>--}}
                             </div><!-- .cart -->
@@ -241,108 +241,13 @@
                                                     <div class="price_old">Rs {{$relatedProduct['old_price']}}</div>
                                                 </div>
                                             </div>
-                                            {{--                                            <a href="#" class="compare"></a>--}}
-                                            {{--                                            <a href="#" class="wishlist"></a>--}}
-                                            <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
+                                            <a href="{{route('product.page',$relatedProduct['id'])}}" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
                                                                          alt="Buy" title=""></a>
                                         </div><!-- .cart -->
                                     </article><!-- .grid_3.article -->
                                 </li>
 
                             @endforeach
-
-                            <li>
-                                <article class="grid_3 article">
-                                    <div class="prev">
-                                        <a href="/product_page.html"><img src="{{ asset('img/content/product2.png') }}"
-                                                                          alt="Product 2" title=""></a>
-                                    </div><!-- .prev -->
-
-                                    <h3 class="title">beautiful Valentine And Engagement</h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                $550.00
-                                                <div class="price_old">$725.00</div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="compare"></a>
-                                        <a href="#" class="wishlist"></a>
-                                        <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                                     alt="Buy" title=""></a>
-                                    </div><!-- .cart -->
-                                </article><!-- .grid_3.article -->
-                            </li>
-
-                            <li>
-                                <article class="grid_3 article">
-                                    <img class="sale" src="{{ asset('img/new.png') }}" alt="New">
-                                    <div class="prev">
-                                        <a href="/product_page.html"><img src="{{ asset('img/content/product3.png') }}"
-                                                                          alt="Product 3" title=""></a>
-                                    </div><!-- .prev -->
-
-                                    <h3 class="title">Emerald Cut Emerald Ring</h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                $550.00
-                                                <div class="price_old">$725.00</div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="compare"></a>
-                                        <a href="#" class="wishlist"></a>
-                                        <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                                     alt="Buy" title=""></a>
-                                    </div><!-- .cart -->
-                                </article><!-- .grid_3.article -->
-                            </li>
-
-                            <li>
-                                <article class="grid_3 article">
-                                    <div class="prev">
-                                        <a href="/product_page.html"><img src="{{ asset('img/content/product4.png') }}"
-                                                                          alt="Product 4" title=""></a>
-                                    </div><!-- .prev -->
-
-                                    <h3 class="title">Diamond Necklaces and Pendants</h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                $550.00
-                                                <div class="price_old">$725.00</div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="compare"></a>
-                                        <a href="#" class="wishlist"></a>
-                                        <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                                     alt="Buy" title=""></a>
-                                    </div><!-- .cart -->
-                                </article><!-- .grid_3.article -->
-                            </li>
-
-                            <li>
-                                <article class="grid_3 article">
-                                    <div class="prev">
-                                        <a href="/product_page.html"><img src="{{ asset('img/content/product5.png') }}"
-                                                                          alt="Product 5" title=""></a>
-                                    </div><!-- .prev -->
-
-                                    <h3 class="title">Emerald Diamond Solitaire</h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                $550.00
-                                                <div class="price_old">$725.00</div>
-                                            </div>
-                                        </div>
-                                        <a href="#" class="compare"></a>
-                                        <a href="#" class="wishlist"></a>
-                                        <a href="#" class="bay"><img src="{{ asset('img/bg_cart.png') }}"
-                                                                     alt="Buy" title=""></a>
-                                    </div><!-- .cart -->
-                                </article><!-- .grid_3.article -->
-                            </li>
                         </ul><!-- #listing -->
                     </div><!-- .brands_list -->
                 </div><!-- .related -->
@@ -358,7 +263,10 @@
 @section("end_script")
     <script>
 
+
         $(document).ready(function () {
+
+
             var uniqueValues = {};
 
             $('#product-varient-color').children().each(function () {
@@ -390,6 +298,8 @@
 
         function handleColorRadioChange(radio) {
             let product = @json($product);
+            //removing selected varient
+            delSelectedVariant();
             //removing all current sizes
             $('#product-varient-size').children().remove();
             //adding right sizes
@@ -429,7 +339,6 @@
 
             // Your existing click handling logic
             let variantId = $(element).parent().data('varientid');
-
             if (variantId) {
                 console.log(variantId);
                 saveSelectedVariant(variantId);
@@ -460,6 +369,20 @@
                 body.classList.remove("prevent-background-scroll");
             }
         });
+        $('#addtocart').click(function () {
+            console.log("clicked")
+
+            sizePressed = $('.swatch-element.plain.available.selected-size').length
+            if (sizePressed > 0 && getSelectedVariant() != null) {
+                handleAddToCart()
+            } else {
+                $.toast({
+                    type: "warning",
+                    autoDismiss: true,
+                    message: '*Kindly Select color and size before adding to cart'
+                });
+            }
+        })
 
 
     </script>

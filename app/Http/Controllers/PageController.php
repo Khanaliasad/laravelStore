@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Cart;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Http\Request;
@@ -96,5 +97,78 @@ class PageController extends Controller
         //return response()->json($productArray);
 
         return $productArray;
+    }
+
+    public function cart(Request $request)
+    {
+        $sessionId = $request->session()->getId();
+        $cartItems = Cart::where("session_id", $sessionId)->with('items.product')->get()->toArray();
+        if (count($cartItems[0]['items'])<1) {
+            $categoryIds = Category::pluck("id")->toArray();
+
+            $Products = [];
+
+            foreach ($categoryIds as $category) {
+                $categoryProducts = Product::where('category_id', $category)
+                    ->whereIn('attribute', ['top', 'sale', 'new'])
+                    ->with('variants.images')
+                    ->limit(2)
+                    ->get()
+                    ->toArray();
+
+                $Products = array_merge($Products, $categoryProducts);
+            }
+            return view('pages.cart', compact('Products'));
+
+        }
+        $categoryArray = [];
+
+        foreach ($cartItems[0]['items'] as $item) {
+            array_push($categoryArray, $item['product']['category_id']);
+
+        };
+
+        // chatGpt
+        // Define the minimum and maximum total products
+        $minTotalProducts = 8;
+        $maxTotalProducts = 10;
+
+// Calculate the total number of products based on array length
+        $totalProducts = count($categoryArray);
+
+// Calculate the minimum and maximum products per category
+        $minProductsPerCategory = floor($minTotalProducts / count(array_count_values($categoryArray)));
+        $maxProductsPerCategory = floor($maxTotalProducts / count(array_count_values($categoryArray)));
+
+// Initialize an array to store the selected products
+        $selectedProducts = [];
+
+// Iterate through categories and select products
+        foreach (array_count_values($categoryArray) as $categoryId => $categoryCount) {
+            // Calculate the number of products for this category within the constraints
+            $productsToFetch = max($minProductsPerCategory, min($maxProductsPerCategory, $categoryCount));
+
+            // Fetch products for the current category
+            $categoryProducts = Product::where('category_id', $categoryId)
+                ->whereIn('attribute', ['top', 'sale', 'new'])
+                ->with('variants.images')
+                ->limit($productsToFetch)
+                ->get()
+                ->toArray();
+
+            // Merge the fetched products into the selected products array
+            $selectedProducts = array_merge($selectedProducts, $categoryProducts);
+        }
+
+        $Products =$selectedProducts;
+        return view('pages.cart', compact('Products'));
+    }
+
+    public
+    function checkout(Request $request)
+    {
+        $path = $request->path();
+        $crumb = explode("/", $path);
+        return view('pages.checkout', compact('path', 'crumb'));
     }
 }

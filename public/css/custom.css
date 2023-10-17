@@ -592,17 +592,17 @@ body.prevent-background-scroll {
 /* ------ */
 /* FOOTER */
 
-footer {
-    display: grid;
-    place-items: center;
-    padding: 20px 150px 60px;
-}
+/*footer {*/
+/*    display: grid;*/
+/*    place-items: center;*/
+/*    padding: 20px 150px 60px;*/
+/*}*/
 
-footer > p {
-    font-size: 1.3rem;
-    font-weight: 500;
-    text-align: center;
-}
+/*footer > p {*/
+/*    font-size: 1.3rem;*/
+/*    font-weight: 500;*/
+/*    text-align: center;*/
+/*}*/
 
 /* ------ */
 /* MEDIA QUERIES */
@@ -684,7 +684,7 @@ footer > p {
 
     #content {
         grid-template-columns: repeat(1, 1fr);
-        padding: 40px 40px;
+        padding: 00px 00px;
     }
 
     footer {
@@ -693,5 +693,114 @@ footer > p {
 
     footer > p {
         font-size: 1rem;
+    }
+}
+
+/*loader*/
+.loader {
+    border: 6px solid #f3f3f3;
+    border-radius: 50%;
+    border-top: 6px solid #3498db;
+    width: 12px;
+    height: 12px;
+    -webkit-animation: spin 2s linear infinite; /* Safari */
+    animation: spin 2s linear infinite;
+}
+
+/* Safari */
+@-webkit-keyframes spin {
+    0% { -webkit-transform: rotate(0deg); }
+    100% { -webkit-transform: rotate(360deg); }
+}
+
+@keyframes spin {
+    0% { transform: rotate(0deg); }
+    100% { transform: rotate(360deg); }
+}
+/*end Loader*/
+
+/* Increase/Decrease Input*/
+.quantity-field {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 120px;
+    height: 40px;
+    margin: 0 auto;
+}
+
+.quantity-field .value-button{
+    border: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 100%;
+    padding: 0;
+    background: #adc1da;
+    outline: none;
+    cursor: pointer;
+}
+
+.quantity-field .value-button:hover {
+    background: rgb(230, 230, 230);
+}
+
+.quantity-field .value-button:active{
+    background: rgb(210, 210, 210);
+}
+
+.quantity-field .decrease-button {
+    margin-right: -4px;
+    border-radius: 8px 0 0 8px;
+}
+
+.quantity-field .increase-button {
+    margin-left: -4px;
+    border-radius: 0 8px 8px 0;
+}
+
+.quantity-field .number{
+    display: inline-block;
+    text-align: center;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-bottom: 1px solid #ddd;
+    margin: 0px;
+    width: 40px;
+    height: 100%;
+    line-height: 40px;
+    font-size: 11pt;
+    box-sizing: border-box;
+    background: white;
+    font-family: calibri;
+}
+
+.quantity-field .number::selection{
+    background: none;
+}
+
+/* end Increase/Decrease Input*/
+
+/*
+input[type=number]::-webkit-inner-spin-button,
+input[type=number]::-webkit-outer-spin-button {
+    -webkit-appearance: none;
+    margin: 0;
+}
+*/
+
+/*making cart table scroll*/
+.table-container {
+    overflow-x: auto;
+}
+
+.cart_product {
+    width: 100%; /* Ensure the table takes the full width of the container */
+    white-space: nowrap; /* Prevent line breaks within cells */
+}
+
+/* Optional: You can add media queries to apply styles only on mobile devices */
+@media (max-width: 767px) {
+    .table-container {
+        overflow-x: scroll;
     }
 }
