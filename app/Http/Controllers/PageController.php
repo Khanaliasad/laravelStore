@@ -4,8 +4,12 @@ namespace App\Http\Controllers;
 
 use App\Models\Cart;
 use App\Models\Category;
+use App\Models\Order;
+use App\Models\OrderItems;
 use App\Models\Product;
+use http\Exception;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class PageController extends Controller
 {
@@ -103,7 +107,7 @@ class PageController extends Controller
     {
         $sessionId = $request->session()->getId();
         $cartItems = Cart::where("session_id", $sessionId)->with('items.product')->get()->toArray();
-        if (count($cartItems[0]['items'])<1) {
+        if (count($cartItems[0]['items']) < 1) {
             $categoryIds = Category::pluck("id")->toArray();
 
             $Products = [];
@@ -160,7 +164,7 @@ class PageController extends Controller
             $selectedProducts = array_merge($selectedProducts, $categoryProducts);
         }
 
-        $Products =$selectedProducts;
+        $Products = $selectedProducts;
         return view('pages.cart', compact('Products'));
     }
 
@@ -170,5 +174,84 @@ class PageController extends Controller
         $path = $request->path();
         $crumb = explode("/", $path);
         return view('pages.checkout', compact('path', 'crumb'));
+    }
+
+    function order(Request $request)
+    {
+        dd(Order::with('items.product.variants')->get()->toArray());
+
+        $user_id = $request->get('user_id');
+        $order_date = $request->get('order_date');
+        $customer_name = $request->get('customer_name');
+        $customer_last_name = $request->get('customer_last_name');
+        $customer_email = $request->get('customer_email');
+        $customer_phone = $request->get('customer_phone');
+        $customer_address = $request->get('customer_address');
+        $order_description = $request->get('order_description');
+        $session_id = session()->getId();
+        $main_cart = Cart::with('items')->where("session_id",$session_id)->first();
+        if ($main_cart == null){
+            return redirect('checkout')->with('error', 'your cart is empty');
+        }
+
+        $cart = Cart::with(['items.product', 'items.variant.images'])
+            ->join('cart_items', 'carts.id', '=', 'cart_items.cart_id')
+            ->where('carts.session_id', $session_id)
+            ->groupBy('carts.id')
+            ->select('carts.*')
+            ->get();
+        $subtotal = 0;
+        $discount = 0;
+        $status = 'processing';
+
+        foreach ($cart as $cartItem) {
+            foreach ($cartItem['items'] as $item) {
+                // Accessing quantity and product price
+                $quantity = $item['quantity'];
+                $price = $item['product']['price'];
+
+                // Calculate subtotal for each item
+                $itemSubtotal = $quantity * $price;
+
+                // Accumulate the subtotal
+                $subtotal += $itemSubtotal;
+            }
+        }
+        $total_amount = $subtotal - $discount;
+        try {
+            $orderData = compact("user_id", "order_date", "customer_name", "customer_last_name", "customer_email", "customer_phone", "customer_address", "status", "order_description", "subtotal", "discount", "total_amount");
+            $order = Order::create($orderData);
+            $order_id = $order['id'];
+
+            foreach ($cart as $cartItem) {
+                foreach ($cartItem['items'] as $item) {
+                    $quantity = $item['quantity'];
+                    $product_variant_id = $item['variant_id'];
+                    $product_id = $item['product_id'];
+                    $itemPrice = $item['product']['price'];
+                    $price = $quantity * $itemPrice;
+                    $discounted_price = $price;
+                    $order_item_description = $item['item_description'];
+                    $orderitems = OrderItems::create(compact('order_id', 'product_variant_id', 'quantity', 'product_id', 'price', 'discounted_price', 'order_item_description'));
+                }
+            }
+            if ($main_cart != null){
+                $main_cart->delete();
+            }
+            $this->whatsappMessage("abracadabra!!!");
+        } catch (Exception $e) {
+            return redirect('checkout')->with('error', 'something went wrong');
+        }
+        return redirect('')->with('status', 'Order Placed Successfully');
+    }
+    function whatsappMessage($message){
+        $url = env('WHATSAPP_URL');
+        $phone = env('WHATSAPP_PHONE');
+        $key = env('WHATSAPP_APIKEY');
+        $response = Http::get($url,[
+            'phone' => $phone,
+            'apikey' => $key,
+            'text' => "sent from site :".$message,
+        ]);
     }
 }

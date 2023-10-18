@@ -2205,6 +2205,7 @@ img.sale {
     max-height: 100%;
     max-width: 100%;
     width: 210px;
+    object-fit: cover;
 }
 .products article h3.title {
     background: url(../img/bg-title.png) no-repeat center bottom;
@@ -3613,8 +3614,8 @@ ul.checkout_list li.active .list_body {
     text-decoration: none;
 }
 ul.checkout_list li.active .list_body form {
-    float: left;
-    width: 49%;
+    /*float: left;*/
+    width: 98%;
 }
 ul.checkout_list li.active .list_body form.login {
     float: right;

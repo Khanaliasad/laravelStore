@@ -13,7 +13,7 @@ return new class extends Migration {
         Schema::create('orders', function (Blueprint $table) {
             $table->id()->start_from(800);
             $table->unsignedBigInteger('user_id')->nullable();
-            $table->dateTime('order_date');
+            $table->dateTime('order_date')->default(now());
             $table->string('status');
             $table->string('customer_name')->nullable();
             $table->string('customer_last_name')->nullable();

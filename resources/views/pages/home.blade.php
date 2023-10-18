@@ -5,6 +5,16 @@
     <section id="main" class="home">
         <div class="container_12">
             <div id="content">
+                @if(session('status'))
+                    <div class="alert-success" style="display: none">
+                        {{ session('status') }}
+                    </div>
+                @endif
+                @if(session('error'))
+                    <p class="alert-error" style="display: none">
+                        *<span>{{ session('error') }}</span>
+                    </p>
+                @endif
                 <div class="grid_12">
                     <h2 class="product-title">Featured Products</h2>
                 </div>
@@ -16,40 +26,40 @@
 
                     @foreach($homeProducts as $product )
                         {{--/*<?= dd(asset($product["variants"][0]["images"][0]["image_path"])) ?>*/--}}
-                                <article class="grid_3 article">
-                                    @if($product['attribute'])
-                                        <img class="sale" src="{{ asset('img/'.$product['attribute'].'.png') }}" alt="Sale">
-                                    @endif
-                                    <div class="prev">
-                                        <a href="{{route("product.page",$product["id"])}}"
-                                        ><img
-                                                src="{{asset($product["variants"][0]["images"][0]["image_path"])}}"
-                                                alt="{{$product["name"]}}"
-                                                title="asad"
-                                            />
-                                        </a>
-                                    </div>
-                                    <!-- .prev -->
+                        <article class="grid_3 article">
+                            @if($product['attribute'])
+                                <img class="sale" src="{{ asset('img/'.$product['attribute'].'.png') }}" alt="Sale">
+                            @endif
+                            <div class="prev">
+                                <a href="{{route("product.page",$product["id"])}}"
+                                ><img
+                                            src="{{asset($product["variants"][0]["images"][0]["image_path"])}}"
+                                            alt="{{$product["name"]}}"
+                                            title="asad"
+                                    />
+                                </a>
+                            </div>
+                            <!-- .prev -->
 
-                                    <h3 class="title">
-                                        {{$product["name"]}}
-                                    </h3>
-                                    <div class="cart">
-                                        <div class="price">
-                                            <div class="vert">
-                                                Rs {{$product["price"]}}
-                                                <div class="price_old">Rs {{$product["old_price"]}}</div>
-                                            </div>
-                                        </div>
-{{--                                        <a href="#" class="compare"></a>--}}
-{{--                                        <a href="#" class="wishlist"></a>--}}
-                                        <a href="#" class="bay"
-                                        ><img src="img/bg_cart.png" alt="Buy" title=""
-                                            /></a>
+                            <h3 class="title">
+                                {{$product["name"]}}
+                            </h3>
+                            <div class="cart">
+                                <div class="price">
+                                    <div class="vert">
+                                        Rs {{$product["price"]}}
+                                        <div class="price_old">Rs {{$product["old_price"]}}</div>
                                     </div>
-                                    <!-- .cart -->
-                                </article>
-                                <!-- .grid_3.article -->
+                                </div>
+                                {{--                                        <a href="#" class="compare"></a>--}}
+                                {{--                                        <a href="#" class="wishlist"></a>--}}
+                                <a href="#" class="bay"
+                                ><img src="img/bg_cart.png" alt="Buy" title=""
+                                    /></a>
+                            </div>
+                            <!-- .cart -->
+                        </article>
+                        <!-- .grid_3.article -->
 
                     @endforeach
 
@@ -89,9 +99,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand1.png"
-                                        alt="Brand 1"
-                                        title=""
+                                            src="img/content/brand1.png"
+                                            alt="Brand 1"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -101,9 +111,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand2.png"
-                                        alt="Brand 2"
-                                        title=""
+                                            src="img/content/brand2.png"
+                                            alt="Brand 2"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -113,9 +123,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand3.png"
-                                        alt="Brand 3"
-                                        title=""
+                                            src="img/content/brand3.png"
+                                            alt="Brand 3"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -125,9 +135,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand4.png"
-                                        alt="Brand 4"
-                                        title=""
+                                            src="img/content/brand4.png"
+                                            alt="Brand 4"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -137,9 +147,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand5.png"
-                                        alt="Brand 5"
-                                        title=""
+                                            src="img/content/brand5.png"
+                                            alt="Brand 5"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -149,9 +159,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand6.png"
-                                        alt="Brand 6"
-                                        title=""
+                                            src="img/content/brand6.png"
+                                            alt="Brand 6"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -161,9 +171,9 @@
                             >
                                 <div>
                                     <img
-                                        src="img/content/brand7.png"
-                                        alt="Brand 7"
-                                        title=""
+                                            src="img/content/brand7.png"
+                                            alt="Brand 7"
+                                            title=""
                                     /></div
                                 >
                             </a>
@@ -249,4 +259,24 @@
         <!-- .container_12 -->
     </section>
     <!-- #main.home -->
+
+@endsection
+
+@section('end_script')
+    @if(session('status'))
+        <script>
+            let sucessMessage = $('div.alert-success').text()
+            $.toast({
+                type: "success", autoDismiss: true, message: sucessMessage
+            });
+        </script>
+    @endif
+    @if(session('error'))
+        <script>
+            let errorMessage = $('p.alert-error span').text()
+            $.toast({
+                type: "error", autoDismiss: true, message: errorMessage
+            });
+        </script>
+    @endif
 @endsection

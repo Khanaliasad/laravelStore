@@ -36,3 +36,4 @@ Route::get('/contact', [PageController::class, 'contact'])->name("contact");
 Route::get('/cart', [PageController::class, 'cart'])->name("cart");
 
 Route::get('/checkout', [PageController::class, 'checkout'])->name("checkout");
+Route::post('/checkout', [PageController::class, 'order'])->name("order");
