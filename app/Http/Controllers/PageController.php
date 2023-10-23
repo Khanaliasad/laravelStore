@@ -107,7 +107,7 @@ class PageController extends Controller
     {
         $sessionId = $request->session()->getId();
         $cartItems = Cart::where("session_id", $sessionId)->with('items.product')->get()->toArray();
-        if (count($cartItems[0]['items']) < 1) {
+        if (isset($cartItems[0]['items'])) {
             $categoryIds = Category::pluck("id")->toArray();
 
             $Products = [];
@@ -126,11 +126,14 @@ class PageController extends Controller
 
         }
         $categoryArray = [];
+        if (isset($cartItems[0])) {
+            foreach ($cartItems[0]['items'] as $item) {
+                array_push($categoryArray, $item['product']['category_id']);
 
-        foreach ($cartItems[0]['items'] as $item) {
-            array_push($categoryArray, $item['product']['category_id']);
-
-        };
+            };
+        }else{
+            $categoryArray = [1,2,3,4];
+        }
 
         // chatGpt
         // Define the minimum and maximum total products
@@ -168,8 +171,7 @@ class PageController extends Controller
         return view('pages.cart', compact('Products'));
     }
 
-    public
-    function checkout(Request $request)
+    public function checkout(Request $request)
     {
         $path = $request->path();
         $crumb = explode("/", $path);
@@ -178,7 +180,7 @@ class PageController extends Controller
 
     function order(Request $request)
     {
-        dd(Order::with('items.product.variants')->get()->toArray());
+//        dd(Order::with('items.product.variants')->get()->toArray());
 
         $user_id = $request->get('user_id');
         $order_date = $request->get('order_date');
@@ -189,8 +191,8 @@ class PageController extends Controller
         $customer_address = $request->get('customer_address');
         $order_description = $request->get('order_description');
         $session_id = session()->getId();
-        $main_cart = Cart::with('items')->where("session_id",$session_id)->first();
-        if ($main_cart == null){
+        $main_cart = Cart::with('items')->where("session_id", $session_id)->first();
+        if ($main_cart == null) {
             return redirect('checkout')->with('error', 'your cart is empty');
         }
 
@@ -235,7 +237,7 @@ class PageController extends Controller
                     $orderitems = OrderItems::create(compact('order_id', 'product_variant_id', 'quantity', 'product_id', 'price', 'discounted_price', 'order_item_description'));
                 }
             }
-            if ($main_cart != null){
+            if ($main_cart != null) {
                 $main_cart->delete();
             }
             $this->whatsappMessage("abracadabra!!!");
@@ -244,14 +246,16 @@ class PageController extends Controller
         }
         return redirect('')->with('status', 'Order Placed Successfully');
     }
-    function whatsappMessage($message){
+
+    function whatsappMessage($message)
+    {
         $url = env('WHATSAPP_URL');
         $phone = env('WHATSAPP_PHONE');
         $key = env('WHATSAPP_APIKEY');
-        $response = Http::get($url,[
+        $response = Http::get($url, [
             'phone' => $phone,
             'apikey' => $key,
-            'text' => "sent from site :".$message,
+            'text' => "sent from site :" . $message,
         ]);
     }
 }

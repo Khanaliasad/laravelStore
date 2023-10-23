@@ -45,8 +45,7 @@
                                         </div><!-- .email -->
                                         <div class="">
                                             <strong>Phone:</strong><sup class="surely">*</sup><br>
-                                            <input type="text" name="customer_phone" class="" value=""
-                                                   pattern="^(0|92|\+92)3\d{9}$" required>
+                                            <input id="telephone" type="tel" name="customer_phone" class="" value="" required>
                                         </div><!-- .customer_phone -->
 
                                         <div class="">

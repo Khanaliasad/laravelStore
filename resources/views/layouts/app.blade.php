@@ -39,7 +39,7 @@
 <body>
 
 <div id="toasts"></div>
-@include('partials._top')
+{{--@include('partials._top')--}}
 @include('partials._header')
 @include('partials.breadcrumbs')
 

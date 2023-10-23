@@ -9,9 +9,9 @@
 
             <div class="grid_9">
                 <div class="top_header">
-                    <div class="welcome">
-                        Welcome visitor you can <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">create an account</a>.
-                    </div><!-- .welcome -->
+{{--                    <div class="welcome">--}}
+{{--                        Welcome visitor you can <a href="{{ route('login') }}">login</a> or <a href="{{ route('register') }}">create an account</a>.--}}
+{{--                    </div><!-- .welcome -->--}}
 
                     <ul id="cart_nav">
                         <li>
