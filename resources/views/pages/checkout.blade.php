@@ -45,7 +45,7 @@
                                         </div><!-- .email -->
                                         <div class="">
                                             <strong>Phone:</strong><sup class="surely">*</sup><br>
-                                            <input id="telephone" type="tel" name="customer_phone" class="" value="" required>
+                                            <input id="telephone" type="text" name="customer_phone" class="" value="" required>
                                         </div><!-- .customer_phone -->
 
                                         <div class="">
