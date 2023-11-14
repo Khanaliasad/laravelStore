@@ -36,7 +36,7 @@
 
                     <div class="grid-list">
                         <a class="grid current" href="/"><span></span></a>
-                        <a class="list" href="/catalog_list.html"><span></span></a>
+{{--                        <a class="list" href="/catalog_list.html"><span></span></a>--}}
                     </div><!-- .grid-list -->
 
                 </div><!-- .options -->
