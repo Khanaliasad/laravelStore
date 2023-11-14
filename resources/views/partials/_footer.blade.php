@@ -14,7 +14,7 @@
                     <h3>Information</h3>
                     <nav class="f_menu">
                         <ul>
-                            <li><a href="#">About As</a></li>
+                            <li><a href="{{ asset("about") }}">About As</a></li>
                             <li><a href="#">Privacy Policy</a></li>
                             <li><a href="#">Terms & Conditions</a></li>
                             <li><a href="#">Secure payment</a></li>
@@ -46,46 +46,50 @@
                     </nav><!-- .private -->
                 </div><!-- .grid_3 -->
             </div><!-- .container_12 -->
-            <div class="clear"></div>
-            <div class="newsletter-payments">
-                <div class="container_12">
-                    <div class="grid_12">
-                        <div class="bg-newsletter-payments">
-                            <div class="newsletter">
-                                <div class="newsletter-text">
-                                    <div class="icon-mail">Newsletter</div>
-                                    Subscribe to notifications about discounts from our store
-                                </div>
-                                <form>
-                                    <input type="submit" value="">
-                                    <input type="email" name="newsletter" value="" placeholder="Enter your email address...">
-                                </form>
-                            </div><!-- .newsletter -->
 
-                            <div class="payments">
-                                <img src="img/payments.png" alt="Payments">
-                            </div><!-- .payments -->
-                        </div><!-- .bg-newsletter-payments -->
-                    </div>
-                    <div class="clear"></div>
-                </div><!-- .container_12 -->
-            </div><!-- .newsletter-payments -->
-            <div class="clear"></div>
+            <!--            <div class="clear"></div>-->
+            <!--            <div class="newsletter-payments">
+                            <div class="container_12">
+                                <div class="grid_12">
+                                    <div class="bg-newsletter-payments">
+                                        <div class="newsletter">
+                                            <div class="newsletter-text">
+                                                <div class="icon-mail">Newsletter</div>
+                                                Subscribe to notifications about discounts from our store
+                                            </div>
+                                            <form>
+                                                <input type="submit" value="">
+                                                <input type="email" name="newsletter" value="" placeholder="Enter your email address...">
+                                            </form>
+                                        </div>&lt;!&ndash; .newsletter &ndash;&gt;
+
+                                        <div class="payments">
+                                            <img src="img/payments.png" alt="Payments">
+                                        </div>&lt;!&ndash; .payments &ndash;&gt;
+                                    </div>&lt;!&ndash; .bg-newsletter-payments &ndash;&gt;
+                                </div>
+                                <div class="clear"></div>
+                            </div>&lt;!&ndash; .container_12 &ndash;&gt;
+                        </div>&lt;!&ndash; .newsletter-payments &ndash;&gt;
+                        -->
+<!--            <div class="clear"></div>-->
         </div><!-- .footer_navigation -->
 
         <div class="footer_info">
             <div class="container_12">
                 <div class="grid_6">
-                    <p class="copyright">© Diamond Store Theme, 2013</p>
+                    <p class="copyright">© Harmainajaz.com, 2023</p>
                 </div><!-- .grid_6 -->
 
+<!--
                 <div class="grid_6">
                     <div class="soc">
                         <a class="google" href="#"></a>
                         <a class="twitter" href="#"></a>
                         <a class="facebook" href="#"></a>
-                    </div><!-- .soc -->
-                </div><!-- .grid_6 -->
+                    </div>&lt;!&ndash; .soc &ndash;&gt;
+                </div>&lt;!&ndash; .grid_6 &ndash;&gt;
+-->
 
                 <div class="clear"></div>
             </div><!-- .container_12 -->

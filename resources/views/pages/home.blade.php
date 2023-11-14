@@ -73,119 +73,119 @@
 
             <div class="clear"></div>
 
-            <div id="brands" class="grid_12">
-                <div class="c_header">
-                    <div class="grid_10">
-                        <h2>Shop by brands</h2>
-                    </div>
-                    <!-- .grid_10 -->
+{{--            <div id="brands" class="grid_12">--}}
+{{--                <div class="c_header">--}}
+{{--                    <div class="grid_10">--}}
+{{--                        <h2>Shop by brands</h2>--}}
+{{--                    </div>--}}
+{{--                    <!-- .grid_10 -->--}}
 
-                    <div class="grid_2">
-                        <a id="next_c1" class="next arows" href="#"
-                        ><span>Next</span></a
-                        >
-                        <a id="prev_c1" class="prev arows" href="#"
-                        ><span>Prev</span></a
-                        >
-                    </div>
-                    <!-- .grid_2 -->
-                </div>
-                <!-- .c_header -->
+{{--                    <div class="grid_2">--}}
+{{--                        <a id="next_c1" class="next arows" href="#"--}}
+{{--                        ><span>Next</span></a--}}
+{{--                        >--}}
+{{--                        <a id="prev_c1" class="prev arows" href="#"--}}
+{{--                        ><span>Prev</span></a--}}
+{{--                        >--}}
+{{--                    </div>--}}
+{{--                    <!-- .grid_2 -->--}}
+{{--                </div>--}}
+{{--                <!-- .c_header -->--}}
 
-                <div class="brands_list">
-                    <ul id="listing">
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand1.png"
-                                            alt="Brand 1"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand2.png"
-                                            alt="Brand 2"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand3.png"
-                                            alt="Brand 3"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand4.png"
-                                            alt="Brand 4"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand5.png"
-                                            alt="Brand 5"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand6.png"
-                                            alt="Brand 6"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                            >
-                                <div>
-                                    <img
-                                            src="img/content/brand7.png"
-                                            alt="Brand 7"
-                                            title=""
-                                    /></div
-                                >
-                            </a>
-                        </li>
-                    </ul>
-                    <!-- #listing -->
-                </div>
-                <!-- .brands_list -->
-            </div>
-            <!-- #brands -->
+{{--                <div class="brands_list">--}}
+{{--                    <ul id="listing">--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand1.png"--}}
+{{--                                            alt="Brand 1"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand2.png"--}}
+{{--                                            alt="Brand 2"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand3.png"--}}
+{{--                                            alt="Brand 3"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand4.png"--}}
+{{--                                            alt="Brand 4"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand5.png"--}}
+{{--                                            alt="Brand 5"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand6.png"--}}
+{{--                                            alt="Brand 6"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                        <li>--}}
+{{--                            <a href="#"--}}
+{{--                            >--}}
+{{--                                <div>--}}
+{{--                                    <img--}}
+{{--                                            src="img/content/brand7.png"--}}
+{{--                                            alt="Brand 7"--}}
+{{--                                            title=""--}}
+{{--                                    /></div--}}
+{{--                                >--}}
+{{--                            </a>--}}
+{{--                        </li>--}}
+{{--                    </ul>--}}
+{{--                    <!-- #listing -->--}}
+{{--                </div>--}}
+{{--                <!-- .brands_list -->--}}
+{{--            </div>--}}
+{{--            <!-- #brands -->--}}
 
-            <div class="clear"></div>
+{{--            <div class="clear"></div>--}}
 
             <div id="content_bottom">
                 <div class="grid_6">

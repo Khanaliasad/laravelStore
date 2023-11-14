@@ -663,7 +663,8 @@ input[type="submit"]:active {
 
 /* Input */
 input[type="email"],
-input[type="text"] {
+input[type="text"] ,
+input[type="password"]{
     background: #fff;
     border: 1px solid #ccc;
     border-radius: 19px;
@@ -3998,7 +3999,7 @@ footer ul {
     background: url(../img/bg_header.png) repeat center top;
     border-top: 1px solid #ededed;
     border-bottom: 1px solid #f2f2f2;
-    min-height: 296px;
+    min-height: 200px;
     padding: 60px 0 0 0;
 }
 .footer_navigation .grid_3 {

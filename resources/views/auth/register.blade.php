@@ -6,7 +6,7 @@
             <header>
                 <h1 class="page_title">Create an Account</h1>
             </header>
-                
+
             <article>
                 <div class="grid_3 new_customers">
         <h2></h2>
@@ -14,13 +14,13 @@
         <div class="clear"></div>
         <button class="account">Create An Account</button> --}}
                 </div><!-- .grid_6 -->
-    
+
                 <div class="grid_6 registed_form">
-        <form  method="POST" action="{{ route('register') }} class="registed" >
+        <form  method="POST" action="{{ route('register') }}" class="registed" >
             @csrf
             {{-- <h2></h2> --}}
             <p>{{ __("If you have an account with us, please ")}}<a href="{{ route('login') }}">log in.</a></p>
-           
+
             <div class="name">
                 <label for="name" ><strong>name:</strong><sup>*</sup><br></label>
                 <input  id="name" type="text" @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
@@ -28,7 +28,7 @@
                 <span class="invalid-feedback" role="alert">
                     <strong>{{ $message }}</strong>
                 </span>
-            @enderror    
+            @enderror
             </div><!-- .name -->
             <div class="email">
                 <label for="email">
@@ -44,7 +44,7 @@
             <div class="password">
 
                 <label for="password"><strong>Password:</strong><sup>*</sup><br></label>
-            <input type="text" name="" class="" value="">
+{{--            <input type="text" name="" class="" value="">--}}
             <input id="password" type="password" @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
             @error('password')
             <span class="invalid-feedback" role="alert">
@@ -54,13 +54,13 @@
             </div><!-- .password -->
             <div class="password">
                 <strong>Confirm Password:</strong><sup>*</sup><br>
-                <input type="text" name="" class="" value="">
+                <input type="password" name="" class="" value="">
                 </div><!-- .password -->
             {{-- <div class="remember">
             <input class="niceCheck" type="checkbox" name="Remember_password">
             <span class="rem">Remember password</span>
             </div><!-- .remember --> --}}
-            <div class="submit">										
+            <div class="submit">
             <input type="submit" value="Login">
                             <a class="forgot" href="#">Forgot Your Password?</a>
             <span>* Required Field</span>
@@ -69,7 +69,7 @@
         </form><!-- .registed -->
                 </div><!-- .grid_6 -->
     </article>
-                
+
             <div class="clear"></div>
         </div><!-- #content -->
 

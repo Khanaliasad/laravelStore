@@ -23,7 +23,7 @@ Route::get('/catalog/{category}', [CategoryController::class, 'index'])->name("c
 Route::get('/product/{id}', [ProductController::class, 'index'])->whereNumber('id')->name("product.page");
 
 // Route::get('/about', 'PageController@about');
-Route::get('/about', [PageController::class, 'about'])->middleware('abc');
+Route::get('/about', [PageController::class, 'about'])->middleware('abc')->name("about");
 
 Auth::routes();
 
