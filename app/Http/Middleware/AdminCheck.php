@@ -5,8 +5,11 @@ namespace App\Http\Middleware;
 use Closure;
 use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
+use App\Providers\RouteServiceProvider;
+use Illuminate\Support\Facades\Auth;
 
-class Ceifefahjhj
+
+class AdminCheck
 {
     /**
      * Handle an incoming request.
@@ -15,7 +18,10 @@ class Ceifefahjhj
      */
     public function handle(Request $request, Closure $next): Response
     {
-        // dd($request->url());    
-        return $next($request);
+        if (Auth::user()->role == 'admin') {
+            // User has the 'admin' role, proceed with the request
+            return $next($request);
+        }
+        return redirect('/');
     }
 }

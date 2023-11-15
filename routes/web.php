@@ -3,6 +3,7 @@
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -34,6 +35,12 @@ Route::get('/contact', [PageController::class, 'contact'])->name("contact");
 //Route::post('/contact', [PageController::class, 'postcontact'])->name("contact");
 
 Route::get('/cart', [PageController::class, 'cart'])->name("cart");
-
+Route::get('/logout', function (){
+    Auth()->logout();
+    // redirect to homepage
+    return redirect('/');
+});
 Route::get('/checkout', [PageController::class, 'checkout'])->name("checkout");
 Route::post('/checkout', [PageController::class, 'order'])->name("order");
+
+Route::get('/admin-dashboard', [AdminController::class, 'index'])->name("admin.dashboard");

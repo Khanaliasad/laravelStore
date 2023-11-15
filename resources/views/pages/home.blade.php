@@ -1,4 +1,5 @@
 @extends('layouts.app')
+@section('title', 'Harmain Ajaz | Home')
 @section('content')
     @include('partials.slider')
     @include('partials.homeBanner')
