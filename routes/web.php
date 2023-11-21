@@ -5,6 +5,8 @@ use App\Http\Controllers\PageController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\AdminController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminOrderController;
+use App\Http\Controllers\AdminProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -35,12 +37,18 @@ Route::get('/contact', [PageController::class, 'contact'])->name("contact");
 //Route::post('/contact', [PageController::class, 'postcontact'])->name("contact");
 
 Route::get('/cart', [PageController::class, 'cart'])->name("cart");
-Route::get('/logout', function (){
+/*Route::get('/logout', function (){
     Auth()->logout();
-    // redirect to homepage
     return redirect('/');
-});
+});*/
 Route::get('/checkout', [PageController::class, 'checkout'])->name("checkout");
 Route::post('/checkout', [PageController::class, 'order'])->name("order");
 
-Route::get('/admin-dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
+//admin pages
+Route::get('/admin/dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
+Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name("admin.orders");
+Route::get('/admin/order/detail/{id}', [AdminOrderController::class, 'show'])->name("admin.orderdetail");
+Route::get('/admin/order/edit/{id}', [AdminOrderController::class, 'edit'])->name("admin.orderedit");
+Route::get('/admin/products', [AdminProductController::class, 'index'])->name("admin.products");
+Route::get('/admin/product/detail/{id}', [AdminProductController::class, 'show'])->name("admin.productdetail");
+Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name("admin.productedit");
