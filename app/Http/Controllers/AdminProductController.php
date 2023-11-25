@@ -10,9 +10,17 @@ class AdminProductController extends Controller
     /**
      * Display a listing of the resource.
      */
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('admin');
+
+    }
+
     public function index()
     {
-        return view('pages.admin.products');
+        $allProducts = Product::with('variants.images')->get()->toArray();
+        return view('pages.admin.products',compact("allProducts"));
         //
     }
 
@@ -63,8 +71,14 @@ class AdminProductController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Product $product)
+    public function destroy(Product $product , $id)
     {
+        $res = Product::destroy($id);
+        if ($res) {
+            return  redirect(route('admin.products'))->with('success', 'Product deleted successfully');
+        } else {
+            return  redirect(route('admin.products'))->with('error', 'Error while deleting product');
+        }
         //
     }
 }

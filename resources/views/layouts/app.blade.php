@@ -17,6 +17,7 @@
     <script src="{{ asset('js/html5.js') }}"></script>
     <script src="{{ asset('js/radio.js') }}"></script>
     <script src="{{ asset('js/cart.js') }}"></script>
+    <script src="{{ asset('js/cart.js') }}"></script>
     <script src="{{ asset('js/checkbox.js') }}"></script>
     <script src="{{ asset('js/selectBox.js') }}"></script>
     <script src="{{ asset('js/jquery.carouFredSel-6.2.0-packed.js') }}"></script>
