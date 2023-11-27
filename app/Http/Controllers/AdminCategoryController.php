@@ -87,11 +87,6 @@ class AdminCategoryController extends Controller
         return redirect(route('admin.category'))->with('success', 'category updated successfully');
 
     }
-    public function delete()
-    {
-
-    }
-
     /**
      * Remove the specified resource from storage.
      */

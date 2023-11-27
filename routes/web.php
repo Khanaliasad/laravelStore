@@ -54,7 +54,10 @@ Route::get('/admin/order/edit/{id}', [AdminOrderController::class, 'edit'])->nam
 Route::get('/admin/products', [AdminProductController::class, 'index'])->name("admin.products");
 Route::get('/admin/product/detail/{id}', [AdminProductController::class, 'show'])->name("admin.productdetail");
 Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name("admin.productedit");
+Route::post('/admin/product/edit/{id}', [AdminProductController::class, 'update'])->name("admin.producteditpost");
 Route::get('/admin/product/delete/{id}', [AdminProductController::class, 'destroy'])->name("admin.productdelete");
+Route::post('/admin/product/image/upload', [\App\Http\Controllers\AdminImageUploadController::class, 'store'])->name("admin.uploadImage");
+Route::post('/admin/product/Variant/delete', [\App\Http\Controllers\AdminImageUploadController::class, 'store'])->name("admin.uploadImage");
 
 Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name("admin.category");
 Route::get('/admin/category/{id}', [AdminCategoryController::class, 'edit'])->name("admin.categoryedit");

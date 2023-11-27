@@ -7,6 +7,8 @@ use Illuminate\Database\Eloquent\Model;
 
 class ProductVariant extends Model
 {
+    protected $fillable = [ 'product_id','color','size','stock_quantity'];
+
     use HasFactory;
 
     public function images()
