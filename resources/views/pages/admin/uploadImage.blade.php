@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Welcome Admin')
+@section('title', $product_id.' Upload Image')
 
 @section('content')
 
@@ -9,11 +9,20 @@
             <div class="col-md-12">
                 <div class="card card-default">
                     <div class="card-header">
-                        <h3 class="card-title">Dropzone.js <small><em>jQuery File Upload</em> like look</small></h3>
+                        <h4 class="">Product Name: {{$name}}  <small><em>Sku: {{$SKU}}</em></small></h4>
+                        <br>
+                        <h2 class="card-title">Add image to Product: {{$product_id}}  <small><em>Varient: {{$id}}</em></small></h2>
                     </div>
+                    @if ($errors->any())
+                        <div class="alert alert-danger">
+                            <ul>
+                                @foreach ($errors->all() as $error)
+                                    <li>{{ $error }}</li>
+                                @endforeach
+                            </ul>
+                        </div>
+                    @endif
                     <div class="card-body">
-                        <form method="post" >
-                            @csrf
                             <div id="actions" class="row">
                                 <div class="col-lg-12">
                                     <div class="btn-group w-100">
@@ -78,12 +87,10 @@
                                     </div>
                                 </div>
                             </div>
-                        </form>
                     </div>
                     <!-- /.card-body -->
                     <div class="card-footer">
-                        Visit <a href="https://www.dropzonejs.com">dropzone.js documentation</a> for more examples and
-                        information about the plugin.
+                        <a href="{{ URL::previous() }}" class="btn btn-secondary">Back</a>
                     </div>
                 </div>
                 <!-- /.card -->
@@ -117,14 +124,13 @@
             autoQueue: false, // Make sure the files aren't queued until manually added
             previewsContainer: "#previews", // Define the container to display the previews
             clickable: ".fileinput-button", // Define the element that should be used as click trigger to select files.
-            // headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
+            headers: {'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')}
 
         })
 
         myDropzone.on("addedfile", function (file) {
             // Hookup the start button
             file.previewElement.querySelector(".start").onclick = function () {
-                console.log(file)
                 myDropzone.enqueueFile(file)
             }
         })

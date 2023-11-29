@@ -62,6 +62,7 @@ Route::get('/admin/product/delete/{id}', [AdminProductController::class, 'destro
 Route::post('/admin/product/Variant/delete/{id}', [AdminProductController::class, 'destroyVariant'])->name("admin.productvariantdelete");
 Route::get('/admin/product/Variant/image/upload/{id}', [AdminImageUploadController::class, 'create'])->name("admin.uploadImage");
 Route::post('/admin/product/Variant/image/upload/{id}', [AdminImageUploadController::class, 'store'])->name("admin.uploadImagePost");
+Route::get('/admin/product/Variant/image/delete/{id}', [AdminImageUploadController::class, 'destroy'])->name("admin.deleteImage");
 
 Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name("admin.category");
 Route::get('/admin/category/{id}', [AdminCategoryController::class, 'edit'])->name("admin.categoryedit");

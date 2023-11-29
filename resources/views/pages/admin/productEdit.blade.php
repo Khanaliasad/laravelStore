@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Welcome Admin')
+@section('title', 'Edit Product')
 
 @section('content')
     <div class="container-fluid">
@@ -246,7 +246,7 @@
                                                                 <div class="card-header">
                                                                     <h3 class="card-title">Variant images</h3>
                                                                     <a href="{{route('admin.uploadImage',$variant['id'])}}"
-                                                                       class="btn btn-primary float-right">
+                                                                       target="blank" class="btn btn-primary float-right">
                                                                         <i class="fas fa-upload"></i>
                                                                         <span>Add</span>
                                                                     </a>
@@ -277,7 +277,7 @@
                                                                                     class="col-auto d-flex align-items-center">
                                                                                     <div class="btn-group">
 
-                                                                                        <a href="#"
+                                                                                        <a href="{{route('admin.deleteImage',$image['id'])}}}"
                                                                                            class="btn btn-danger delete">
                                                                                             <i class="fas fa-trash"></i>
                                                                                             <span>Delete</span>
