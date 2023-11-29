@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminCategoryController;
+use App\Http\Controllers\AdminImageUploadController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,12 +53,15 @@ Route::get('/admin/order/detail/{id}', [AdminOrderController::class, 'show'])->n
 Route::get('/admin/order/edit/{id}', [AdminOrderController::class, 'edit'])->name("admin.orderedit");
 
 Route::get('/admin/products', [AdminProductController::class, 'index'])->name("admin.products");
+Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name("admin.productcreate");
+Route::post('/admin/product/create', [AdminProductController::class, 'store'])->name("admin.productcreatepost");
 Route::get('/admin/product/detail/{id}', [AdminProductController::class, 'show'])->name("admin.productdetail");
 Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name("admin.productedit");
 Route::post('/admin/product/edit/{id}', [AdminProductController::class, 'update'])->name("admin.producteditpost");
 Route::get('/admin/product/delete/{id}', [AdminProductController::class, 'destroy'])->name("admin.productdelete");
-Route::post('/admin/product/image/upload', [\App\Http\Controllers\AdminImageUploadController::class, 'store'])->name("admin.uploadImage");
-Route::post('/admin/product/Variant/delete', [\App\Http\Controllers\AdminImageUploadController::class, 'store'])->name("admin.uploadImage");
+Route::post('/admin/product/Variant/delete/{id}', [AdminProductController::class, 'destroyVariant'])->name("admin.productvariantdelete");
+Route::get('/admin/product/Variant/image/upload/{id}', [AdminImageUploadController::class, 'create'])->name("admin.uploadImage");
+Route::post('/admin/product/Variant/image/upload/{id}', [AdminImageUploadController::class, 'store'])->name("admin.uploadImagePost");
 
 Route::get('/admin/category', [AdminCategoryController::class, 'index'])->name("admin.category");
 Route::get('/admin/category/{id}', [AdminCategoryController::class, 'edit'])->name("admin.categoryedit");

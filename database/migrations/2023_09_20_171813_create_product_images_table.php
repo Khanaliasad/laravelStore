@@ -17,7 +17,7 @@ return new class extends Migration
             $table->string('image_path');
             $table->timestamps();
 
-            $table->foreign('product_variant_id')->references('id')->on('product_variants');
+            $table->foreign('product_variant_id')->references('id')->on('product_variants')->onDelete('cascade');
         });
     }
 

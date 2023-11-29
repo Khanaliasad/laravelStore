@@ -60,19 +60,15 @@
             }
         })
 
-        // Setup the buttons for all transfers
+        // Set up the buttons for all transfers
         // The "add files" button doesn't need to be setup because the config
         // `clickable` has already been specified.
-        for (let i = 0; i < len; i++) {
-            var selector = "#actions" + i;
-            document.querySelector(selector + " .start").onclick = function () {
-                myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
-            }
-            document.querySelector(selector + " .cancel").onclick = function () {
-                myDropzone.removeAllFiles(true)
-            }
+        document.querySelector("#actions .start").onclick = function() {
+            myDropzone.enqueueFiles(myDropzone.getFilesWithStatus(Dropzone.ADDED))
         }
-
+        document.querySelector("#actions .cancel").onclick = function() {
+            myDropzone.removeAllFiles(true)
+        }
         // DropzoneJS Demo Code End
 
     </script>

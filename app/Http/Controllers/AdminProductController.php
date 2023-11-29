@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\ProductVariant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Arr;
+use Illuminate\Support\Facades\Session;
 
 class AdminProductController extends Controller
 {
@@ -41,7 +42,12 @@ class AdminProductController extends Controller
      */
     public function create()
     {
-        //
+        $attributes = $this->attr;
+        $variantSizes = $this->variantSizes;
+        $allCategories = Category::all()->toArray();
+
+        return view('pages.admin.productCreate', compact('attributes', 'variantSizes','allCategories'));
+
     }
 
     /**
@@ -49,6 +55,17 @@ class AdminProductController extends Controller
      */
     public function store(Request $request)
     {
+//        dd($request->all());
+        $req = $request->except(['_token', 'new_variant']);
+        $new_variant = $request->get('new_variant');
+        $res = Product::create($req);
+        if (isset($new_variant)) {
+            foreach ($new_variant as $v_id => $variant) {
+                $res = ProductVariant::create($variant);
+            }
+        }
+        return redirect(route('admin.products'))->with('success', 'Product Created successfully');
+
         //
     }
 
@@ -57,13 +74,11 @@ class AdminProductController extends Controller
      */
     public function show(Product $product, $id)
     {
-        //
         $attributes = $this->attr;
         $productDetail = Product::with('variants.images')->where('id', $id)->first();
         if (is_null($productDetail)) {
             abort(404);
         }
-        $asad = $productDetail->toArray();
         $allCategories = Category::all()->toArray();
         $variantSizes = $this->variantSizes;
 
@@ -106,7 +121,7 @@ class AdminProductController extends Controller
                 $res = ProductVariant::create($variant);
             }
         }
-        return redirect(route('admin.productedit',$id))->with('success', 'Product updated successfully');
+        return redirect(route('admin.productedit', $id))->with('success', 'Product updated successfully');
         //
     }
 
@@ -126,8 +141,16 @@ class AdminProductController extends Controller
 
     public function destroyVariant(ProductVariant $productvariant, $id)
     {
-        $res = ProductVariant::destroy($id);
-        $response = [];
+        try {
+            $res = ProductVariant::destroy($id);
+            return ["success" => !!$res, "error" => !$res, 'data' => ['message' => 'Successfully Deleted Variant: ' . $id]];
+        } catch (\Exception $e) {
+            $res = false;
+            return ["success" => !!$res, "error" => !$res, 'data' => ['message' => 'Error Deleting Variant: ' . $id]];
+
+
+        }
+
         //
     }
 }

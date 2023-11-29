@@ -3,6 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title')</title>
 
     <!-- Google Font: Source Sans Pro -->
@@ -10,6 +11,8 @@
           href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome -->
     <link rel="stylesheet" href="{{ asset('plugins/fontawesome-free/css/all.min.css') }}">
+    <!-- dropzonejs -->
+    <link rel="stylesheet" href="{{asset('plugins/dropzone/min/dropzone.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
     <!-- Theme style -->
@@ -64,6 +67,37 @@
 <script src="{{ asset('dist/js/adminlte.min.js') }}"></script>
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
+<script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+
+<script>
+    var Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 3000
+    });
+
+    function successToast(body) {
+        $(document).Toasts('create', {
+            class: 'bg-success',
+            icon: 'success',
+            title: 'Success',
+            autohide: true,
+            delay: 1500,
+            body: body,
+        });
+    }
+
+    function errorToast(body) {
+        $(document).Toasts('create', {
+            class: 'bg-danger',
+            title: 'Error',
+            autohide: true,
+            delay: 1500,
+            body: body,
+        });
+    }
+</script>
 @yield('end_script')
 
 <script src="{{ asset('plugins/chart.js/Chart.js') }}"></script>

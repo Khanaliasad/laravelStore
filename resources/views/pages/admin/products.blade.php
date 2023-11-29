@@ -8,78 +8,14 @@
             <div class="col-12">
                 <div class="card card-default collapsed-card">
                     <div class="card-header">
-                        <h3 class="card-title">Add products</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-primary" data-card-widget="collapse">
-                                <i class="fas fa-plus"></i> Add
-                            </button>
-                            <!--                            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                                                            <i class="fas fa-times"></i>
-                                                        </button>-->
-                        </div>
+                        <h3  class="card-title mt-2">Add products</h3>
+                        <a href="{{route('admin.productcreate')}}" class="btn btn-primary btn-lg card-title float-right">Add products</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
-                        <div class="row">
-                            <div class="col-md-3"></div>
-                            <div class="col-md-6">
-                                <!-- general form elements disabled -->
-                                <div class="card card-primary">
-                                    <div class="card-header">
-                                        <h3 class="card-title">Add catagory</h3>
-                                    </div>
-                                    <!-- /.card-header -->
-
-                                    <form method="post" action="{{ route('admin.categorycreatepost') }}">
-                                        @csrf
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <!-- text input -->
-                                                    <div class="form-group">
-                                                        <label for="name">name</label>
-                                                        <input type="text" name="name" class="form-control"
-                                                               placeholder="Enter category name">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="row">
-                                                <div class="col-sm-12">
-                                                    <!-- textarea -->
-                                                    <div class="form-group">
-                                                        <label for="description">Description</label>
-                                                        <textarea name="description" class="form-control" rows="3"
-                                                                  placeholder="Enter category description"></textarea>
-
-                                                    </div>
-                                                </div>
-                                            </div>
-
-                                        </div>
-                                        <div class="card-footer">
-                                            <div class="flex flex-row">
-                                                <a href="{{ URL::previous() }}" class="btn btn-secondary">Back</a>
-                                                <button type="submit" class="btn btn-primary  float-right">Submit
-                                                </button>
-                                            </div>
-                                        </div>
-                                    </form>
-
-                                    <!-- /.card-body -->
-                                </div>
-                                <!-- /.card -->
-                                <!-- general form elements disabled -->
-                            </div>
-                        </div>
-                        <!-- /.row -->
                     </div>
                     <!-- /.card-body -->
-                    <div class="card-footer">
-                        Visit <a href="https://select2.github.io/">Select2 documentation</a> for more examples and
-                        information about
-                        the plugin.
-                    </div>
+
                 </div>
                 <div class="card">
                     @if(session('success'))
