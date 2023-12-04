@@ -2,6 +2,8 @@
 
 @section('title', 'Welcome Admin')
 
+@section('page_name', 'All Categorys')
+
 @section('content')
 
     <div class="container-fluid">

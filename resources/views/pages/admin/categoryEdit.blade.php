@@ -1,5 +1,7 @@
 @extends('layouts.admin')
 
+@section('page_name', 'Category Edit')
+
 @section('title', 'Welcome Admin')
 
 @section('content')

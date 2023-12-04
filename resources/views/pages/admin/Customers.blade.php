@@ -1,7 +1,7 @@
 @extends('layouts.admin')
 
-@section('title', 'Admin-Products')
-@section('page_name', 'All Products')
+@section('title', 'Welcome Admin')
+@section('page_name', 'All Customrs')
 
 @section('content')
     <div class="container-fluid">
@@ -9,7 +9,7 @@
             <div class="col-12">
                 <div class="card card-default collapsed-card">
                     <div class="card-header">
-                        <h3  class="card-title mt-2">Add products</h3>
+                        <h3  class="card-title mt-2">Add Order</h3>
                         <a href="{{route('admin.productcreate')}}" class="btn btn-primary btn-lg card-title float-right">Add products</a>
                     </div>
                     <!-- /.card-header -->
@@ -112,7 +112,4 @@
     </div>
     <!-- /.container-fluid -->
 
-@endsection
-@section('end_script')
-    @include('partials.admin.tableScript')
 @endsection

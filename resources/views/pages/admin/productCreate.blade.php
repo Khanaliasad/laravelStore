@@ -1,6 +1,7 @@
 @extends('layouts.admin')
 
 @section('title', 'Welcome Admin')
+@section('page_name', 'Create Product')
 
 @section('content')
     <div class="container-fluid">

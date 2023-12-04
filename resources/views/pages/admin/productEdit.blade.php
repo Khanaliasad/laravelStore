@@ -2,6 +2,12 @@
 
 @section('title', 'Edit Product')
 
+@if($edit)
+    @section('page_name', 'Product Edit')
+@else
+    @section('page_name', 'Product View')
+@endif
+
 @section('content')
     <div class="container-fluid">
 

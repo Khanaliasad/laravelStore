@@ -45,9 +45,9 @@ Route::get('/cart', [PageController::class, 'cart'])->name("cart");
 });*/
 Route::get('/checkout', [PageController::class, 'checkout'])->name("checkout");
 Route::post('/checkout', [PageController::class, 'order'])->name("order");
-
 //admin pages
 Route::get('/admin/dashboard', [AdminController::class, 'index'])->name("admin.dashboard");
+
 Route::get('/admin/orders', [AdminOrderController::class, 'index'])->name("admin.orders");
 Route::get('/admin/order/detail/{id}', [AdminOrderController::class, 'show'])->name("admin.orderdetail");
 Route::get('/admin/order/edit/{id}', [AdminOrderController::class, 'edit'])->name("admin.orderedit");
@@ -69,3 +69,5 @@ Route::get('/admin/category/{id}', [AdminCategoryController::class, 'edit'])->na
 Route::post('/admin/category/create', [AdminCategoryController::class, 'create'])->name("admin.categorycreatepost");
 Route::post('/admin/category/{id}', [AdminCategoryController::class, 'update'])->name("admin.categoryeditpost");
 Route::get('/admin/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name("admin.categorydelete");
+
+Route::get('/admin/customers', [AdminOrderController::class, 'index'])->name("admin.customers");

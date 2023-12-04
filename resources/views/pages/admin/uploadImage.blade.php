@@ -2,6 +2,8 @@
 
 @section('title', $product_id.' Upload Image')
 
+@section('page_name', 'Upload Variant Image')
+
 @section('content')
 
     <div class="container-fluid">

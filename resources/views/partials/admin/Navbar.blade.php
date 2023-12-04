@@ -16,6 +16,9 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{route("admin.category")}}" class="nav-link">Category</a>
         </li>
+        <li class="nav-item d-none d-sm-inline-block">
+            <a href="{{route("admin.customers")}}" class="nav-link">Customers</a>
+        </li>
     </ul>
 
     <!-- Right navbar links -->

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\OrderItems;
+use App\Models\Product;
 use Illuminate\Http\Request;
 
 class AdminOrderController extends Controller
@@ -20,7 +22,9 @@ class AdminOrderController extends Controller
     public function index()
     {
         //
-        return view('pages.admin.orders');
+        $allOrders = Order::with('items.variant','items.product')->get()->toArray();
+
+        return view('pages.admin.orders',compact('allOrders'));
     }
 
     /**
@@ -42,10 +46,12 @@ class AdminOrderController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(Order $order)
+    public function show(Order $order,$id)
     {
         //
-        return view('pages.admin.orderDetail');
+        $orderDetails = Order::with('items.variant','items.product')->where('id',$id)->get()->first()->toArray();
+
+        return view('pages.admin.orderDetail',compact('orderDetails'));
 
     }
 

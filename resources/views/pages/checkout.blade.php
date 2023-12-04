@@ -23,10 +23,10 @@
                                         <div style="display: none">
                                             <strong>userId:</strong><sup class="surely">*</sup><br>
                                             <input type="text" name="user_id" class=""
-                                                   value="{{ Auth::user() ?Auth::user()->id : null }}">
+                                                   value="{{ Auth::user() &&( Auth::user()->role !=='admin' )?Auth::user()->id : "null" }}">
                                         </div><!-- .userId -->
                                         <div style="display: none">
-                                            <strong>userId:</strong><sup class="surely">*</sup><br>
+                                            <strong>order date:</strong><sup class="surely">*</sup><br>
                                             <input type="datetime-local" name="order_date"
                                                    value="{{ date('Y-m-d\TH:i:s') }}"/>
                                         </div><!-- .order_date -->
@@ -45,7 +45,8 @@
                                         </div><!-- .email -->
                                         <div class="">
                                             <strong>Phone:</strong><sup class="surely">*</sup><br>
-                                            <input id="telephone" type="text" name="customer_phone" class="" value="" required>
+                                            <input id="telephone" type="text" name="customer_phone" class="" value=""
+                                                   required>
                                         </div><!-- .customer_phone -->
 
                                         <div class="">

@@ -40,10 +40,12 @@
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
+{{--        @yield('crumbs')--}}
         @include('partials.admin.header_crumbs')
         <!-- /endof Content Header (Page header) -->
         <!-- Main content -->
         <section class="content">
+
             @yield('content')
         </section>
         <!-- /.content -->
