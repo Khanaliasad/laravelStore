@@ -146,4 +146,5 @@ class AdminImageUploadController extends Controller
             return back()->with('error', 'Error while deleting product');
         }
     }
+
 }

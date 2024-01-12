@@ -9,8 +9,7 @@
             <div class="col-12">
                 <div class="card card-default collapsed-card">
                     <div class="card-header">
-                        <h3  class="card-title mt-2">Add Order</h3>
-                        <a href="{{route('admin.productcreate')}}" class="btn btn-primary btn-lg card-title float-right">Add products</a>
+                        <h3 class="card-title mt-2">Add Customers</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -29,10 +28,8 @@
                             {{ session('error') }}
                         </div>
                     @endif
-
                     <div class="card-header">
-                        <h3 class="card-title">All Category's</h3>
-
+                        <h3 class="card-title">All Customers's</h3>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -40,63 +37,34 @@
                             <thead>
                             <tr>
                                 <th>Id</th>
-                                <th>SKU</th>
                                 <th>Name</th>
-                                <th>Fabric</th>
-                                <th>Price</th>
-                                <th>Old Price</th>
-                                <th>Attribute</th>
-                                <th>Description</th>
-                                <th>detail</th>
-                                <th>Created At</th>
-                                <th>weight</th>
-                                <th>Category ID</th>
-                                <th>Action</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                                <th>Phone</th>
+                                <th>Verified</th>
+                                <th>created_at</th>
                             </tr>
                             </thead>
                             <tbody>
 
-                            @foreach($allProducts as $product)
+                            @foreach($Customers as $customer)
                                 <tr>
-                                    <td>{{ $product['id'] }}</td>
-                                    <td>{{ $product['SKU'] }}</td>
-                                    <td>{{ $product['name'] }}</td>
-                                    <td>{{ $product['fabric'] }}</td>
-                                    <td>{{ $product['price'] }}</td>
-                                    <td>{{ $product['old_price'] }}</td>
+                                    <td>{{ $customer['id'] }}</td>
+                                    <td>{{ $customer['name'] }}</td>
+                                    <td>{{ $customer['email'] }}</td>
+                                    <td>{{ $customer['role'] }}</td>
+                                    <td>{{ $customer['phone'] }}</td>
                                     <td>
-                                        @switch($product['attribute'])
-                                            @case('new')
-                                                <button
-                                                    class="btn btn-block btn-outline-primary btn-sm">{{ $product['attribute'] }}</button>
-                                                @break
-
-                                            @case('top')
-                                                <button
-                                                    class="btn btn-block btn-outline-success btn-sm">{{ $product['attribute'] }}</button>
-                                                @break
-
-                                            @case('sale')
-                                                <button
-                                                    class="btn btn-block btn-outline-danger btn-sm">{{ $product['attribute'] }}</button>
-                                                @break
-
-                                            @default
-                                        @endswitch
+                                        <div>
+                                            @if(is_null($customer['email_verified_at']))
+                                                <ion-icon style='height:2em;width:2em;color:red;' name="alert-circle-outline"></ion-icon>
+                                            @else
+                                                <ion-icon style='height:2em;width:2em;fill:#0c84ff;'
+                                                          name="checkmark-done-circle"></ion-icon>
+                                            @endif
+                                        </div>
                                     </td>
-                                    <td>{{ substr($product['description'],0,20) }}...</td>
-                                    <td>{{ substr($product['detail'],0,20) }}...</td>
-                                    <td>{{ \Carbon\Carbon::parse($product['created_at'])->format('d/m/Y h:i a') }}</td>
-                                    <td>{{ $product['weight'] }}</td>
-                                    <td>{{ $product['category_id'] }}</td>
-                                    <td>
-                                        <a class="btn btn-default"
-                                           href="{{route('admin.productdetail',$product['id'])}}">Detail</a>
-                                        <a class="btn btn-primary"
-                                           href="{{ route('admin.productedit',$product['id']) }}">Edit</a>
-                                        <a class="btn btn-danger"
-                                           href="{{ route('admin.productdelete',$product['id']) }}">Delete</a>
-                                    </td>
+                                    <td>{{ \Carbon\Carbon::parse($customer['created_at'])->format('d/m/Y h:i a') }}</td>
                                 </tr>
                             @endforeach
                             </tbody>

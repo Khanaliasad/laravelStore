@@ -55,6 +55,17 @@
                                 <div class="col-sm-12">
                                     <!-- text input -->
                                     <div class="form-group">
+                                        <label for="SKU">SKU</label>
+                                        <input required type="text" name="SKU" class="form-control"
+                                               placeholder="Enter ..." disabled
+                                               value="{{$productDetail["SKU"]?$productDetail["SKU"]:""}}">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-sm-12">
+                                    <!-- text input -->
+                                    <div class="form-group">
                                         <label for="fabric">fabric</label>
                                         <input required type="text" name="fabric" class="form-control"
                                                placeholder="Enter ..."
@@ -252,7 +263,8 @@
                                                                 <div class="card-header">
                                                                     <h3 class="card-title">Variant images</h3>
                                                                     <a href="{{route('admin.uploadImage',$variant['id'])}}"
-                                                                       target="blank" class="btn btn-primary float-right">
+                                                                       target="blank"
+                                                                       class="btn btn-primary float-right">
                                                                         <i class="fas fa-upload"></i>
                                                                         <span>Add</span>
                                                                     </a>

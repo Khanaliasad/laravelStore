@@ -9,6 +9,7 @@ use App\Http\Controllers\AdminOrderController;
 use App\Http\Controllers\AdminProductController;
 use App\Http\Controllers\AdminCategoryController;
 use App\Http\Controllers\AdminImageUploadController;
+use App\Http\Controllers\AdminCustomerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -55,6 +56,9 @@ Route::get('/admin/order/edit/{id}', [AdminOrderController::class, 'edit'])->nam
 Route::get('/admin/products', [AdminProductController::class, 'index'])->name("admin.products");
 Route::get('/admin/product/create', [AdminProductController::class, 'create'])->name("admin.productcreate");
 Route::post('/admin/product/create', [AdminProductController::class, 'store'])->name("admin.productcreatepost");
+Route::get('/admin/product/csv/create', [AdminProductController::class, 'uploadCsv'])->name("admin.productcreateCsv");
+Route::post('/admin/product/csv/create', [AdminProductController::class, 'uploadCsv'])->name("admin.productcreateCsvpost");
+
 Route::get('/admin/product/detail/{id}', [AdminProductController::class, 'show'])->name("admin.productdetail");
 Route::get('/admin/product/edit/{id}', [AdminProductController::class, 'edit'])->name("admin.productedit");
 Route::post('/admin/product/edit/{id}', [AdminProductController::class, 'update'])->name("admin.producteditpost");
@@ -70,4 +74,4 @@ Route::post('/admin/category/create', [AdminCategoryController::class, 'create']
 Route::post('/admin/category/{id}', [AdminCategoryController::class, 'update'])->name("admin.categoryeditpost");
 Route::get('/admin/category/delete/{id}', [AdminCategoryController::class, 'destroy'])->name("admin.categorydelete");
 
-Route::get('/admin/customers', [AdminOrderController::class, 'index'])->name("admin.customers");
+Route::get('/admin/customers', [AdminCustomerController::class, 'index'])->name("admin.customers");

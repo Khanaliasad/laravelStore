@@ -15,7 +15,7 @@
     <link rel="stylesheet" href="{{asset('plugins/dropzone/min/dropzone.min.css')}}">
     <!-- Ionicons -->
     <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
-    <!-- Theme style -->
+{{--    <!-- Theme style -->--}}
     <link rel="stylesheet" href="{{ asset('dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('plugins/chart.js/Chart.css') }}">
     <!-- DataTables -->
@@ -41,7 +41,7 @@
     <div class="content-wrapper">
         <!-- Content Header (Page header) -->
 {{--        @yield('crumbs')--}}
-        @include('partials.admin.header_crumbs')
+            @include('partials.admin.header_crumbs')
         <!-- /endof Content Header (Page header) -->
         <!-- Main content -->
         <section class="content">
@@ -70,6 +70,7 @@
 <!-- AdminLTE for demo purposes -->
 <script src="{{ asset('dist/js/demo.js') }}"></script>
 <script src="{{ asset('plugins/sweetalert2/sweetalert2.min.js')}}"></script>
+<script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 
 <script>
     var Toast = Swal.mixin({

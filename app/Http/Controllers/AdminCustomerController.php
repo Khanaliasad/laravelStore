@@ -13,6 +13,9 @@ class AdminCustomerController extends Controller
     public function index()
     {
         //
+        $Customers = User::all();
+        return view('pages.admin.Customers',compact('Customers'));
+
     }
 
     /**

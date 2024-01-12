@@ -9,8 +9,12 @@
             <div class="col-12">
                 <div class="card card-default collapsed-card">
                     <div class="card-header">
-                        <h3  class="card-title mt-2">Add products</h3>
-                        <a href="{{route('admin.productcreate')}}" class="btn btn-primary btn-lg card-title float-right">Add products</a>
+                        <h3 class="card-title mt-2">Add products</h3>
+
+                        <a href="{{route('admin.productcreate')}}"
+                           class="btn btn-primary btn-lg card-title float-right">Add products</a>
+                        <a href="{{route('admin.productcreateCsv')}}"
+                           class="btn btn-warning btn-lg card-title float-right mr-2">Upload Csv</a>
                     </div>
                     <!-- /.card-header -->
                     <div class="card-body">
@@ -51,11 +55,11 @@
                                 <th>Created At</th>
                                 <th>weight</th>
                                 <th>Category ID</th>
+                                <th>Variants</th>
                                 <th>Action</th>
                             </tr>
                             </thead>
                             <tbody>
-
                             @foreach($allProducts as $product)
                                 <tr>
                                     <td>{{ $product['id'] }}</td>
@@ -89,6 +93,7 @@
                                     <td>{{ \Carbon\Carbon::parse($product['created_at'])->format('d/m/Y h:i a') }}</td>
                                     <td>{{ $product['weight'] }}</td>
                                     <td>{{ $product['category_id'] }}</td>
+                                    <td>{{ count($product['variants']) }}</td>
                                     <td>
                                         <a class="btn btn-default"
                                            href="{{route('admin.productdetail',$product['id'])}}">Detail</a>

@@ -1,0 +1,5 @@
+name,SKU,fabric,price,old_price,attribute,weight,detail,description,category_id,new_variant-color,new_variant-size,new_variant-stock_quantity,new_variant-images
+Fuller Stuart1,Test-sku-1,Eos architecto facer,180,527,sale,56,Totam pariatur Illo,Voluptatibus in fugi,3,Dicta ea nisi sed te,XL,459,"product1.png,product2.png,product3.png"
+Fuller Stuart1,Test-sku-1,Eos architecto facer,180,527,sale,56,Totam pariatur Illo,Voluptatibus in fugi,3,Libero ut consequatu,M,152,"product4.png,product5.png,product6.png"
+Fuller Stuart2,Test-sku-2,Eos architecto facer,180,527,sale,56,Totam pariatur Illo,Voluptatibus in fugi,3,Libero ut consequatu,M,152,"product7.png,product8.png,product9.png"
+Fuller Stuart2,Test-sku-2,Eos architecto facer,180,527,sale,56,Totam pariatur Illo,Voluptatibus in fugi,3,Libero ut consequatu,S,152,"product10.png,product11.png,product12.png"

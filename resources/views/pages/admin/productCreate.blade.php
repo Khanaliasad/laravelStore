@@ -1,6 +1,6 @@
 @extends('layouts.admin')
 
-@section('title', 'Welcome Admin')
+@section('title', 'Create Product')
 @section('page_name', 'Create Product')
 
 @section('content')
