@@ -155,6 +155,17 @@ class Helper
 
         echo 'CSV file created successfully: products3.csv';
     }
+    public static function getBaseUrl() {
+        $protocol = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? 'https' : 'http';
+        $host = $_SERVER['HTTP_HOST'];
+        $script = $_SERVER['SCRIPT_NAME'];
+
+        // Remove script filename from the end of the path
+        $path = trim(dirname($script), '/');
+
+        return "$protocol://$host/$path";
+    }
+
 }
 
 function convertTimeStampTodate($str)

@@ -20,6 +20,7 @@ class PageController extends Controller
     {
         $this->_products = Product::with('variants.images')->get();
         $this->_catagories = Category::all()->pluck('name')->toArray();
+        ini_set('max_execution_time', 5000);
     }
 
     public function home()
@@ -131,8 +132,8 @@ class PageController extends Controller
                 array_push($categoryArray, $item['product']['category_id']);
 
             };
-        }else{
-            $categoryArray = [1,2,3,4];
+        } else {
+            $categoryArray = [1, 2, 3, 4];
         }
 
         // chatGpt
@@ -240,7 +241,10 @@ class PageController extends Controller
             if ($main_cart != null) {
                 $main_cart->delete();
             }
-            $this->whatsappMessage("abracadabra!!!");
+            $orderDetails = Order::with('items.variant', 'items.product')->where('id', $order_id)->get()->first()->toArray();
+
+            $orderMessage = $this->getOrderDetailMesage($orderDetails);
+            $this->whatsappMessage($orderMessage);
         } catch (Exception $e) {
             return redirect('checkout')->with('error', 'something went wrong');
         }
@@ -255,7 +259,39 @@ class PageController extends Controller
         $response = Http::get($url, [
             'phone' => $phone,
             'apikey' => $key,
-            'text' => "sent from site :" . $message,
+            'text' => $message,
         ]);
+    }
+
+    function getOrderDetailMesage($orderDetails)
+    {
+        $baseUrl = \Helper::getBaseUrl();
+
+        $message = "Dear Customer,\n\n";
+        $message .= "Thank you for your recent order with us. Here are the details:\n\n";
+        $message .= "Order ID: {$orderDetails['id']}\n";
+        $message .= "Order Date: {$orderDetails['order_date']}\n";
+        $message .= "Status: {$orderDetails['status']}\n\n";
+        $message .= "Customer Information:\n";
+        $message .= "Name: {$orderDetails['customer_name']} {$orderDetails['customer_last_name']}\n";
+        $message .= "Phone: {$orderDetails['customer_phone']}\n";
+        $message .= "Email: {$orderDetails['customer_email']}\n";
+        $message .= "Address: {$orderDetails['customer_address']}\n\n";
+        $message .= "Order Summary:\n";
+        $message .= "Discount: {$orderDetails['discount']}\n";
+        $message .= "Total Amount: {$orderDetails['total_amount']}\n\n";
+        foreach ($orderDetails['items'] as $index => $item) {
+            $message .= "Item " . ($index + 1) . ":\n";
+            $message .= "Product: {$item['product']['name']}\n";
+            $message .= "SKU: " . $item['product']['SKU'] . ":\n";
+            $message .= "Color: {$item['variant']['color']}, Size: {$item['variant']['size']}\n";
+            $message .= "Quantity: {$item['quantity']}\n";
+            $message .= "Unit Price: {$item['product']['price']}\n";
+            $message .= "Subtotal:" . (float)$item['price'] * (float)$item['quantity']."\n";
+            $message .= "link: ". $baseUrl ."product/". $item['product']['id']."\n\n";
+        }
+        $message .= "Best regards,\nHarmain Ajaz";
+
+        return $message;
     }
 }
