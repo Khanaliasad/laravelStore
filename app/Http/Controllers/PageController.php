@@ -24,7 +24,7 @@ class PageController extends Controller
 
     public function home()
     {
-
+        return view('errors.payup');
         $categoryIds = Category::pluck("id")->toArray();
 
         $homeProducts = [];
